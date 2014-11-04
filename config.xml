@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.fitduell277455" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>fitduell</name>
+<widget id="de.challenger.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Challenger</name>
   <description>
-        An Ionic Framework and Cordova project.
-    </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-    </author>
+    An app to challenge your friends
+  </description>
+  <author email="klma1021@hs-karlsruhe.de">
+    Markus Klein
+  </author>
+  <author email="beth1015@hs-karlsruhe.de">
+    Thomas Beuz
+  </author>
+  <author email="fech1014@hs-karlsruhe.de">
+    Christian Feurer
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
