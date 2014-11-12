@@ -50,7 +50,11 @@ angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'
 
   .state('app.browse', {
     url: "/browse",
-    templateUrl: 'templates/browse.html',
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/browse.html"
+      }
+    },
     data: {
       requiresLogin: true
     }
@@ -107,5 +111,22 @@ angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'
 .run(function(auth) {
   // This hooks al auth events to check everything as soon as the app starts
   auth.hookEvents();
+})
+
+.run(function($rootScope, auth, store, jwtHelper, $location) {
+  // This events gets triggered on refresh or URL change
+  $rootScope.$on('$locationChangeStart', function() {
+    if (!auth.isAuthenticated) {
+      var token = store.get('token');
+      if (token) {
+        if (!jwtHelper.isTokenExpired(token)) {
+          auth.authenticate(store.get('profile'), token);
+        } else {
+          // Either show Login page or use the refresh token to get a new idToken
+          $location.path('/');
+        }
+      }
+    }
+  });
 });
 
