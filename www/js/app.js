@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('challenger', ['ionic'])
+angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,7 +20,7 @@ angular.module('challenger', ['ionic'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
   $stateProvider
 
   .state('app', {
@@ -28,6 +28,15 @@ angular.module('challenger', ['ionic'])
     abstract: true,
     templateUrl: "templates/menu.html",
     controller: 'AppCtrl'
+  })
+
+  .state('app.login', {
+    url: '/login',
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/login.html"
+      }
+    }
   })
 
   .state('app.search', {
@@ -41,10 +50,9 @@ angular.module('challenger', ['ionic'])
 
   .state('app.browse', {
     url: "/browse",
-    views: {
-      'menuContent' :{
-        templateUrl: "templates/browse.html"
-      }
+    templateUrl: 'templates/browse.html',
+    data: {
+      requiresLogin: true
     }
   })
   .state('app.playlists', {
@@ -68,5 +76,36 @@ angular.module('challenger', ['ionic'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
+
+  authProvider.init({
+    domain: 'fitduell.auth0.com',
+    clientID: 'AzEnM7689zg67SEbj2C0d96vKGhOPaqg',
+    loginState: 'app.login'
+  });
+
+  jwtInterceptorProvider.tokenGetter = function(store, jwtHelper, auth) {
+    var idToken = store.get('token');
+    var refreshToken = store.get('refreshToken');
+    // If no token return null
+    if (!idToken || !refreshToken) {
+      return null;
+    }
+    // If token is expired, get a new one
+    if (jwtHelper.isTokenExpired(idToken)) {
+      return auth.refreshIdToken(refreshToken).then(function(idToken) {
+        store.set('token', idToken);
+        return idToken;
+      });
+    } else {
+      return idToken;
+    }
+  }
+
+  $httpProvider.interceptors.push('jwtInterceptor');
+})
+
+.run(function(auth) {
+  // This hooks al auth events to check everything as soon as the app starts
+  auth.hookEvents();
 });
 

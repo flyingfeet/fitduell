@@ -16,14 +16,17 @@
         <ion-item nav-clear menu-close ng-click="login()">
           Login
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/search">
+        <ion-item nav-clear menu-close href="#/app/search" ng-show="isLoggedIn()">
           Search
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/browse">
+        <ion-item nav-clear menu-close href="#/app/browse" ng-show="isLoggedIn()">
           Browse
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/playlists">
+        <ion-item nav-clear menu-close href="#/app/playlists" ng-show="isLoggedIn()">
           Playlists
+        </ion-item>
+        <ion-item nav-clear menu-close ng-click="logout()" ng-show="isLoggedIn()">
+          Logout
         </ion-item>
       </ion-list>
     </ion-content>
