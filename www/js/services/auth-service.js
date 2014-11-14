@@ -9,6 +9,11 @@ angular.module('challenger')
           device: 'Mobile device'
         }
       }, function(profile, token, accessToken, state, refreshToken) {
+        //TODO Profil auf Server anlegen/checken --> vervollständigen lassen oder Timeline
+        //Profil enthält Nickname, Vor-/Nachname, evtl. Geburtstag, E-Mail
+        //Gibt's den User?
+        //JA? --> localstorage --> state.go home
+        //Nein? --> state.go register --> Daten ausfüllen --> Server speichern --> localstorage --> state.go home
         store.set('profile', profile);
         store.set('token', token);
         store.set('refreshToken', refreshToken);
