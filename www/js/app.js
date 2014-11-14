@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'])
+angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt', 'restangular'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,7 +20,7 @@ angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
+.config(function($stateProvider, $urlRouterProvider, authProvider, $httpProvider, jwtInterceptorProvider, RestangularProvider) {
   $stateProvider
 
   .state('app', {
@@ -59,7 +59,7 @@ angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'
       requiresLogin: true
     }
   })
-  .state('app.playlists', {
+  .state('app.home', {
     url: "/playlists",
     views: {
       'menuContent' :{
@@ -106,6 +106,8 @@ angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'
   }
 
   $httpProvider.interceptors.push('jwtInterceptor');
+
+  RestangularProvider.setBaseUrl('http://localhost:8080/as/api');
 })
 
 .run(function(auth) {

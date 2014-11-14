@@ -1,32 +1,16 @@
 angular.module('challenger')
 
-.controller('AppCtrl', function(store, $scope, $location, auth) {
+.controller('AppCtrl', function($scope, AuthService) {
   $scope.login = function() {
-    auth.signin({
-      authParams: {
-        scope: 'openid offline_access',
-        device: 'Mobile device'
-      }
-    }, function(profile, token, accessToken, state, refreshToken) {
-      // Success callback
-      store.set('profile', profile);
-      store.set('token', token);
-      store.set('refreshToken', refreshToken);
-      $location.path('/');
-    }, function(err) {
-      // Error callback
-      console.log(err);
-    });
+    AuthService.login();
   };
 
   $scope.logout = function() {
-    auth.signout();
-    store.remove('profile');
-    store.remove('token');
-  }
+    AuthService.logout();
+  };
 
   $scope.isLoggedIn = function () {
-    return store.get('token') && store.get('profile');
+    return AuthService.isLoggedIn();
   };
 })
 
