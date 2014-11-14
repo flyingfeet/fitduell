@@ -12,24 +12,27 @@ var paths = {
 };
 
 gulp.task('bundle-js', function () {
-    //First use the app.js because it defines the angular module
-    return gulp.src(['www/js/base/app.js', 'www/js/**/*.js'])
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest('www/build/js/'));
-  });
+  return gulp.src(['www/js/base/app.js', 'www/js/**/*.js'])
+  .pipe(concat('app.js'))
+  .pipe(gulp.dest('www/build/js/'));
+});
+
+gulp.task('bundle', ['bundle-js'], function () {
+  gulp.watch('www/js/**', ['bundle-js']);
+});
 
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
-    .on('end', done);
+  .pipe(sass())
+  .pipe(gulp.dest('./www/css/'))
+  .pipe(minifyCss({
+    keepSpecialComments: 0
+  }))
+  .pipe(rename({ extname: '.min.css' }))
+  .pipe(gulp.dest('./www/css/'))
+  .on('end', done);
 });
 
 gulp.task('watch', function() {
@@ -38,9 +41,9 @@ gulp.task('watch', function() {
 
 gulp.task('install', ['git-check'], function() {
   return bower.commands.install()
-    .on('log', function(data) {
-      gutil.log('bower', gutil.colors.cyan(data.id), data.message);
-    });
+  .on('log', function(data) {
+    gutil.log('bower', gutil.colors.cyan(data.id), data.message);
+  });
 });
 
 gulp.task('git-check', function(done) {
@@ -50,7 +53,7 @@ gulp.task('git-check', function(done) {
       '\n  Git, the version control system, is required to download Ionic.',
       '\n  Download git here:', gutil.colors.cyan('http://git-scm.com/downloads') + '.',
       '\n  Once git is installed, run \'' + gutil.colors.cyan('gulp install') + '\' again.'
-    );
+      );
     process.exit(1);
   }
   done();
