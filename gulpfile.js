@@ -11,6 +11,13 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
+gulp.task('bundle-js', function () {
+    //First use the app.js because it defines the angular module
+    return gulp.src(['www/js/base/app.js', 'www/js/**/*.js'])
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('www/build/js/'));
+  });
+
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
