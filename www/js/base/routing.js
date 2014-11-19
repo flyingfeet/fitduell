@@ -35,6 +35,15 @@ angular.module('challenger')
       requiresLogin: true
     }
   })
+  .state('app.profile', {
+    url: "/profile",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/profile.html",
+        controller: "ProfileCtrl"
+      }
+    }
+  })
   .state('app.home', {
     url: "/playlists",
     views: {

@@ -14,6 +14,15 @@ angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'
   });
 })
 
-.config(function (RestangularProvider) {
-  RestangularProvider.setBaseUrl('http://localhost:8080/as/api');
+.run(function ($window, Restangular) {
+  var location = $window.location.hostname;
+    var path = "";
+    if(location == "localhost") {
+      path = "http://localhost:8080/as/api";
+    }
+    else {
+      path = "http://as-fitduell.rhcloud.com/api";
+    }
+
+    Restangular.setBaseUrl(path);
 });
