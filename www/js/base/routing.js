@@ -24,11 +24,33 @@ angular.module('challenger')
       }
     }
   })
-  .state('app.browse', {
-    url: "/browse",
+  .state('app.myChallenges', {
+    url: "/myChallenges",
     views: {
       'menuContent' :{
-        templateUrl: "templates/browse.html"
+        templateUrl: "templates/myChallenges.html"
+      }
+    },
+    data: {
+      requiresLogin: true
+    }
+  })
+  .state('app.friends', {
+    url: "/friends",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/friends.html"
+      }
+    },
+    data: {
+      requiresLogin: true
+    }
+  })
+  .state('app.location', {
+    url: "/location",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/location.html"
       }
     },
     data: {
