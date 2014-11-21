@@ -1,6 +1,6 @@
 angular.module('challenger')
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('TimelineCtrl', function($scope) {
   $scope.playlists = [
   { title: 'Reggae', id: 1 },
   { title: 'Chill', id: 2 },
