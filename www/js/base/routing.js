@@ -16,11 +16,11 @@ angular.module('challenger')
       }
     }
   })
-  .state('app.search', {
-    url: "/search",
+  .state('app.checkMails', {
+    url: "/checkMails",
     views: {
       'menuContent' :{
-        templateUrl: "templates/search.html"
+        templateUrl: "templates/checkMails.html"
       }
     }
   })

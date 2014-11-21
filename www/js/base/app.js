@@ -16,13 +16,38 @@ angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt'
 
 .run(function ($window, Restangular) {
   var location = $window.location.hostname;
-    var path = "";
-    if(location == "localhost") {
-      path = "http://localhost:8080/as/api";
-    }
-    else {
-      path = "http://as-fitduell.rhcloud.com/api";
-    }
+  var path = "";
+  if(location == "localhost") {
+    path = "http://localhost:8080/as/api";
+  }
+  else {
+    path = "http://as-fitduell.rhcloud.com/api";
+  }
 
-    Restangular.setBaseUrl(path);
+  Restangular.setBaseUrl(path);
+})
+
+.config(function ($httpProvider) {
+  $httpProvider.interceptors.push(function($rootScope) {
+    return {
+      request: function(config) {
+        $rootScope.$broadcast('loading:show')
+        return config
+      },
+      response: function(response) {
+        $rootScope.$broadcast('loading:hide')
+        return response
+      }
+    };
+  });
+})
+
+.run(function($rootScope, $ionicLoading) {
+  $rootScope.$on('loading:show', function() {
+    $ionicLoading.show({template: 'Loading'})
+  })
+
+  $rootScope.$on('loading:hide', function() {
+    $ionicLoading.hide()
+  })
 });
