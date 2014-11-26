@@ -6,3 +6,4 @@ platforms/
 plugins/
 www/lib/
 www/build/js/app.js
+.idea/
