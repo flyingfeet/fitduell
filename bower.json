@@ -8,6 +8,7 @@
     "auth0-angular": "3.*",
     "a0-angular-storage": ">= 0.0.6",
     "angular-jwt": ">= 0.0.4",
-    "restangular": "~1.4.0"
+    "restangular": "~1.4.0",
+    "angular-loading-bar": "~0.6.0"
   }
 }

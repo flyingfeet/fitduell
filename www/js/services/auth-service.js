@@ -23,7 +23,7 @@ angular.module('challenger')
               $state.go('app.home');
             }
             else {
-              $state.go('app.profile');
+              $state.go('app.myprofile');
             }
           }, function (err) {
             console.log(err);

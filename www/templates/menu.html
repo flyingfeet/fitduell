@@ -17,11 +17,11 @@
   <div class="row">
     <div class="col col-80">
       <label class="item item-input">
-        <input type="text" placeholder="Suche">
+        <input type="text" placeholder="Suche" ng-model="searchQuery">
       </label>
     </div>
     <div class="col col-20">
-      <a class="button button-icon icon ion-search"></a>
+      <a class="button button-icon icon ion-search" nav-clear menu-close ng-click="searchUserByNickname(searchQuery)"></a>
     </div>
   </div>
 </div>
@@ -37,7 +37,7 @@ Freunde
 <ion-item nav-clear menu-close href="#/app/location" ng-show="isLoggedIn()">
 Umgebung
 </ion-item>
-<ion-item nav-clear menu-close href="#/app/profile" ng-show="isLoggedIn()">
+<ion-item nav-clear menu-close href="#/app/myprofile" ng-show="isLoggedIn()">
 Profil
 </ion-item>
 <ion-item nav-clear menu-close ng-click="logout()" ng-show="isLoggedIn()">
