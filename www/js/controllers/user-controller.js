@@ -15,7 +15,10 @@ angular.module('challenger')
     }
   })
 
-  .controller('ProfileCtrl', function ($scope) {
+  .controller('ProfileCtrl', function ($scope, $state) {
+    $scope.newChallenge = function () {
+      $state.go('app.newChallenge');
+    };
   })
 
   .filter('SearchResultFilter', function (store) {

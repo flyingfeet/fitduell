@@ -47,6 +47,18 @@ angular.module('challenger')
           requiresLogin: true
         }
       })
+      .state('app.newChallenge', {
+        url: "/newChallenge",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/newChallenge.html",
+            controller: "ChallengeCreator"
+          }
+        },
+        date: {
+          requiresLogin: true
+        }
+      })
       .state('app.friends', {
         url: "/friends",
         views: {
