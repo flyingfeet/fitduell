@@ -1,0 +1,24 @@
+<ion-view title="{{profile.nickname}}">
+  <ion-nav-buttons side="left" ng-if="isLoggedIn()">
+  </ion-nav-buttons>
+  <ion-content class="has-header main">
+    <div class="card">
+      <div class="item item-divider">
+        <h2>{{profile.firstname}} {{profile.lastname}} ({{profile.nickname}})</h2>
+
+        <p>{{profile.birthdate | date: 'dd.MM.yyyy'}}</p>
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col col-50">
+            <button type="button" class="button button-full button-primary custom-button">Freund hinzufügen</button>
+          </div>
+          <div class="col col-50">
+            <button type="button" class="button button-full button-primary custom-button">Herausfordern</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

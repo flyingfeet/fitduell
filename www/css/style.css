@@ -4,6 +4,10 @@
   padding: 15px;
 }
 
+.custom-button {
+  border: 1px solid #B2B2B2;
+}
+
 #loading-bar .bar {
   background: #2c3e50;
 }

@@ -23,6 +23,9 @@ angular.module('challenger')
             templateUrl: "templates/searchUsers.html",
             controller: "UserCtrl"
           }
+        },
+        data: {
+          requiresLogin: true
         }
       })
       .state('app.checkMails', {
@@ -66,6 +69,18 @@ angular.module('challenger')
           requiresLogin: true
         }
       })
+      .state('app.profile', {
+        url: "/profile",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/profile.html",
+            controller: "ProfileCtrl"
+          }
+        },
+        data: {
+          requiresLogin: true
+        }
+      })
       .state('app.myprofile', {
         url: "/myprofile",
         views: {
@@ -73,6 +88,9 @@ angular.module('challenger')
             templateUrl: "templates/myprofile.html",
             controller: "MyProfileCtrl"
           }
+        },
+        data: {
+          requiresLogin: true
         }
       })
       .state('app.home', {

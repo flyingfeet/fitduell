@@ -17,7 +17,12 @@ angular.module('challenger')
     $scope.searchUserByNickname = function (searchQuery) {
       $scope.searchQuery = searchQuery;
       $state.go('app.searchUsers');
-    }
+    };
+
+    $scope.showProfile = function (user) {
+      $scope.profile = user;
+      $state.go('app.profile');
+    };
 
     if (!$scope.isLoggedIn()) {
       $scope.login();
