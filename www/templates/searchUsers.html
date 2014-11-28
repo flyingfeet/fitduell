@@ -24,7 +24,7 @@
 
       <div class="list card">
 
-        <div class="item" ng-repeat="user in users" ng-click="showProfile(user)">
+        <div class="item" ng-repeat="user in users | SearchResultFilter" ng-click="showProfile(user)">
           <h2>{{user.firstname}} {{user.lastname}} ({{user.nickname}})</h2>
 
           <p>{{user.birthdate | date: 'dd.MM.yyyy'}}</p>

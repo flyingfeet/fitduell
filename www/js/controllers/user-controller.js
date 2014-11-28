@@ -16,4 +16,18 @@ angular.module('challenger')
   })
 
   .controller('ProfileCtrl', function ($scope) {
+  })
+
+  .filter('SearchResultFilter', function (store) {
+    return function (list) {
+      var result = [];
+
+      angular.forEach(list, function (user) {
+        if (user.nickname === store.get('fd_profile').nickname) {
+          result.push(user);
+        }
+      });
+
+      return result;
+    };
   });
