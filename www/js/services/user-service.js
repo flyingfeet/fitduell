@@ -56,6 +56,17 @@ angular.module('challenger')
         });
 
         return deferred.promise;
+      },
+      checkFriendship: function (myId, friendId) {
+        var deferred = $q.defer();
+
+        Restangular.one('users/checkFriendship').get({myId: myId, friendId: friendId}).then(function (alreadyFriends) {
+          deferred.resolve(alreadyFriends);
+        }, function (err) {
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
       }
     };
   });

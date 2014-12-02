@@ -15,10 +15,24 @@ angular.module('challenger')
     }
   })
 
-  .controller('ProfileCtrl', function ($scope, $state) {
+  .controller('ProfileCtrl', function ($scope, $state, store, UserService) {
+    $scope.checkFriendship = function () {
+      var myId = store.get('fd_profile').id;
+      var promise = UserService.checkFriendship(myId, $scope.profile.id);
+      promise.then(function (alreadyFriends) {
+        console.log(alreadyFriends);
+        $scope.alreadyFriends = alreadyFriends;
+        $scope.loaded = true;
+      }, function (err) {
+        console.log(err);
+      });
+    }
+
     $scope.newChallenge = function () {
       $state.go('app.newChallenge');
     };
+
+    $scope.checkFriendship();
   })
 
   .controller('FriendsCtrl', function ($scope, $state, store, UserService) {

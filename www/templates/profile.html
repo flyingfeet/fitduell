@@ -10,10 +10,10 @@
       </div>
       <div class="item item-text-wrap">
         <div class="row">
-          <div class="col col-50">
+          <div class="col" ng-show="alreadyFriends === 'false'">
             <button type="button" class="button button-full button-primary custom-button">Freund hinzufügen</button>
           </div>
-          <div class="col col-50">
+          <div class="col" ng-show="alreadyFriends === 'true'">
             <button type="button" class="button button-full button-primary custom-button" ng-click="newChallenge()">Herausfordern</button>
           </div>
         </div>
