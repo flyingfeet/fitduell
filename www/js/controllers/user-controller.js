@@ -26,7 +26,7 @@ angular.module('challenger')
       var result = [];
 
       angular.forEach(list, function (user) {
-        if (user.nickname === store.get('fd_profile').nickname) {
+        if (user.nickname !== store.get('fd_profile').nickname) {
           result.push(user);
         }
       });
