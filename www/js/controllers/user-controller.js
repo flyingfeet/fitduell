@@ -33,8 +33,16 @@ angular.module('challenger')
       });
     };
 
-    $scope.acceptFriendship = function (id) {
-      console.log(id);
+    $scope.acceptFriendship = function (friendshipId) {
+      var userId = store.get('fd_profile').id;
+
+      var promise = UserService.acceptFriendship(userId, friendshipId);
+      promise.then(function (friends) {
+        console.log("Freundschaft aktzeptiert");
+        $scope.friends = friends;
+      }, function (err) {
+        console.log(err);
+      });
     };
 
     $scope.declineFriendship = function (id) {
