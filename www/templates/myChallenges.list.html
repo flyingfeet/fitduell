@@ -1,0 +1,11 @@
+<h1>Meine Challenges</h1>
+<ul class="list">
+  <li class="item" ng-repeat="challenge in challenges" ng-click="showDetails(challenge)">
+    <h3>Herausforderer: {{challenge.requestingUser.nickname}}</h3>
+    <h3>Herausgeforderter: {{challenge.requestedUser.nickname}}</h3>
+    <h4>Kategorie: {{challenge.sport.name}}</h4>
+    <h4>Aufgabe: {{challenge.exercise.name}}</h4>
+    <h4>Wert: {{challenge.exerciseValue}}</h4>
+    <h4>Status: {{challenge.status}}</h4>
+  </li>
+</ul>

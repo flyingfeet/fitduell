@@ -38,14 +38,24 @@ angular.module('challenger')
       })
       .state('app.myChallenges', {
         url: "/myChallenges",
+        abstract: true,
         views: {
           'menuContent': {
-            templateUrl: "templates/myChallenges.html"
+            templateUrl: "templates/myChallenges.html",
+            controller: "ChallengesCtrl"
           }
         },
         data: {
           requiresLogin: true
         }
+      })
+      .state('app.myChallenges.list', {
+        url: "/list",
+        templateUrl: "templates/myChallenges.list.html"
+      })
+      .state('app.myChallenges.details', {
+        url: "/{id}",
+        templateUrl: "templates/myChallenges.details.html"
       })
       .state('app.newChallenge', {
         url: "/newChallenge",
@@ -55,7 +65,7 @@ angular.module('challenger')
             controller: "ChallengeCreator"
           }
         },
-        date: {
+        data: {
           requiresLogin: true
         }
       })
@@ -114,6 +124,7 @@ angular.module('challenger')
           }
         }
       });
-    // if none of the above states are matched, use this as the fallback
+// if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/timeline');
-  });
+  })
+;
