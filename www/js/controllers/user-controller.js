@@ -31,9 +31,31 @@ angular.module('challenger')
       }, function (err) {
         console.log(err);
       });
-    }
+    };
+
+    $scope.acceptFriendship = function (id) {
+      console.log(id);
+    };
+
+    $scope.declineFriendship = function (id) {
+      console.log(id);
+    };
 
     $scope.findMyFriends();
+  })
+
+  .filter('FriendlistStatusFilter', function () {
+    return function (list, status) {
+      var result = [];
+
+      angular.forEach(list, function (friendlist) {
+        if (friendlist.status === status) {
+          result.push(friendlist);
+        }
+      })
+
+      return result;
+    };
   })
 
   .filter('SearchResultFilter', function (store) {
