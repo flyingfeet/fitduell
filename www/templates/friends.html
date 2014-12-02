@@ -4,5 +4,13 @@
   </ion-nav-buttons>
   <ion-content class="has-header main">
     <h1>Freunde</h1>
+    <div class="list card">
+
+      <div class="item" ng-repeat="friend in friends" ng-click="showProfile(friend.friendTwo)">
+        <h2>{{friend.friendTwo.nickname}}</h2>
+
+        <p>{{friend.friendTwo.birthdate | date: 'dd.MM.yyyy'}}</p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

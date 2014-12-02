@@ -21,6 +21,21 @@ angular.module('challenger')
     };
   })
 
+  .controller('FriendsCtrl', function ($scope, $state, store, UserService) {
+    $scope.findMyFriends = function () {
+      var userId = store.get('fd_profile').id;
+
+      var promise = UserService.findMyFriends(userId);
+      promise.then(function (friends) {
+        $scope.friends = friends;
+      }, function (err) {
+        console.log(err);
+      });
+    }
+
+    $scope.findMyFriends();
+  })
+
   .filter('SearchResultFilter', function (store) {
     return function (list) {
       var result = [];
