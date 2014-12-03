@@ -15,14 +15,31 @@ angular.module('challenger')
     }
   })
 
-  .controller('ProfileCtrl', function ($scope, $state, store, UserService) {
+  .controller('ProfileCtrl', function ($scope, $state, $cordovaToast, store, UserService) {
     $scope.checkFriendship = function () {
       var myId = store.get('fd_profile').id;
       var promise = UserService.checkFriendship(myId, $scope.profile.id);
-      promise.then(function (alreadyFriends) {
-        console.log(alreadyFriends);
-        $scope.alreadyFriends = alreadyFriends;
+      promise.then(function (friendship) {
+        $scope.friendship = friendship;
+        if (friendship && friendship.status === 'WAITING') {
+          $scope.waiting = true;
+        }
         $scope.loaded = true;
+      }, function (err) {
+        console.log(err);
+      });
+    };
+
+    $scope.newFriend = function (friendId) {
+      var userId = store.get('fd_profile').id;
+
+      var promise = UserService.createFriendship(userId, friendId);
+      promise.then(function (friendship) {
+        $scope.waiting = true;
+        if (friendship) {
+          $cordovaToast.showShortBottom("Freundschaftsanfrage gesendet");
+          $scope.friendship = friendship;
+        }
       }, function (err) {
         console.log(err);
       });

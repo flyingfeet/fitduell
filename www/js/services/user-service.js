@@ -46,6 +46,17 @@ angular.module('challenger')
 
         return deferred.promise;
       },
+      createFriendship: function (userId, friendId) {
+        var deferred = $q.defer();
+
+        Restangular.one('users', userId).one('friends', friendId).post().then(function (friendship) {
+          deferred.resolve(friendship);
+        }, function (err) {
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
+      },
       acceptFriendship: function (userId, friendshipId) {
         var deferred = $q.defer();
 
@@ -60,8 +71,8 @@ angular.module('challenger')
       checkFriendship: function (myId, friendId) {
         var deferred = $q.defer();
 
-        Restangular.one('users/checkFriendship').get({myId: myId, friendId: friendId}).then(function (alreadyFriends) {
-          deferred.resolve(alreadyFriends);
+        Restangular.one('users/checkFriendship').get({myId: myId, friendId: friendId}).then(function (friendship) {
+          deferred.resolve(friendship);
         }, function (err) {
           deferred.reject(err);
         });

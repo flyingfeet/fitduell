@@ -10,11 +10,22 @@
       </div>
       <div class="item item-text-wrap">
         <div class="row">
-          <div class="col" ng-show="alreadyFriends === 'false'">
-            <button type="button" class="button button-full button-primary custom-button">Freund hinzufügen</button>
+          <div class="col" ng-show="friendship === undefined && loaded && !waiting">
+            <button type="button" class="button button-full button-primary custom-button"
+                    ng-click="newFriend(profile.id)">Freund hinzufügen
+            </button>
           </div>
-          <div class="col" ng-show="alreadyFriends === 'true'">
-            <button type="button" class="button button-full button-primary custom-button" ng-click="newChallenge()">Herausfordern</button>
+          <div class="col" ng-show="waiting">
+            <div class="card" style="margin: 0px;">
+              <div class="item item-text-wrap" style="text-align: center;">
+                Freundschaftsanfrage ausstehend
+              </div>
+            </div>
+          </div>
+          <div class="col" ng-show="friendship !== undefined && friendship.status === 'ACCEPTED'">
+            <button type="button" class="button button-full button-primary custom-button" ng-click="newChallenge()">
+              Herausfordern
+            </button>
           </div>
         </div>
       </div>
