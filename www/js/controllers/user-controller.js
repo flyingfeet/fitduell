@@ -35,7 +35,7 @@ angular.module('challenger')
     $scope.checkFriendship();
   })
 
-  .controller('FriendsCtrl', function ($scope, $state, store, UserService) {
+  .controller('FriendsCtrl', function ($scope, $state, $cordovaToast, store, UserService) {
     $scope.findMyFriends = function () {
       var userId = store.get('fd_profile').id;
 
@@ -52,15 +52,23 @@ angular.module('challenger')
 
       var promise = UserService.acceptFriendship(userId, friendshipId);
       promise.then(function (friends) {
-        console.log("Freundschaft aktzeptiert");
         $scope.friends = friends;
+        $cordovaToast.showShortBottom("Freundschaft aktzeptiert.");
       }, function (err) {
         console.log(err);
       });
     };
 
-    $scope.declineFriendship = function (id) {
-      console.log(id);
+    $scope.declineFriendship = function (friendshipId) {
+      var userId = store.get('fd_profile').id;
+
+      var promise = UserService.deleteFriendship(userId, friendshipId);
+      promise.then(function (friends) {
+        $scope.friends = friends;
+        $cordovaToast.showShortBottom("Freundschaft abgelehnt.");
+      }, function (err) {
+        console.log(err);
+      });
     };
 
     $scope.findMyFriends();
