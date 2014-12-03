@@ -20,7 +20,7 @@ angular.module('challenger')
           promise.then(function (user) {
             if(user) {
               store.set('fd_profile', user);
-              $state.go('app.home');
+              $state.go('app.timeline');
             }
             else {
               $state.go('app.myprofile');
@@ -38,7 +38,7 @@ angular.module('challenger')
       store.remove('fd_profile');
       store.remove('profile');
       store.remove('token');
-      $state.go('app.home');
+      $state.go('app.timeline');
     },
     isLoggedIn: function () {
       return store.get('token') && store.get('profile') && store.get('fd_profile');

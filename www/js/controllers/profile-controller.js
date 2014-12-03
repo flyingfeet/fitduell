@@ -53,7 +53,7 @@ angular.module('challenger')
         }
         else {
           store.set('fd_profile', profile);
-          $state.go('app.home');
+          $state.go('app.timeline');
         }
       }, function (err) {
         console.log(err);
