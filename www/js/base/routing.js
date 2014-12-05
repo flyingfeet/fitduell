@@ -55,7 +55,7 @@ angular.module('challenger')
       })
       .state('app.myChallenges.details', {
         url: "/{id}",
-        templateUrl: "templates/myChallenges.details.html"
+        templateUrl: "templates/challenges.details.html"
       })
       .state('app.newChallenge', {
         url: "/newChallenge",
@@ -116,12 +116,32 @@ angular.module('challenger')
           requiresLogin: true
         }
       })
-      .state('app.home', {
+      .state('app.timeline', {
         url: "/timeline",
+        abstract: true,
         views: {
           'menuContent': {
             templateUrl: "templates/timeline.html",
-            controller: 'TimelineCtrl'
+            controller: "TimelineCtrl"
+          }
+        },
+        data: {
+          requiresLogin: true
+        }
+      })
+      .state('app.timeline.list', {
+        url: "/list",
+        templateUrl: "templates/timeline.list.html"
+      })
+      .state('app.timeline.details', {
+        url: "/{id}",
+        templateUrl: "templates/challenges.details.html"
+      })
+      .state('app.home', {
+        url: "/home",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/home.html"
           }
         }
       });

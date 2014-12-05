@@ -20,7 +20,7 @@ angular.module('challenger')
           promise.then(function (user) {
             if(user) {
               store.set('fd_profile', user);
-              $state.go('app.home');
+              $state.go('app.timeline.list');
             }
             else {
               $state.go('app.myprofile');

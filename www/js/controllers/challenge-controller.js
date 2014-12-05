@@ -19,7 +19,7 @@ angular.module('challenger')
     $scope.showDetails = function (challenge) {
       $scope.selectedChallenge = challenge;
       $state.go('app.myChallenges.details', {id: challenge.id});
-    }
+    };
 
     $scope.findMyChallenges();
   });

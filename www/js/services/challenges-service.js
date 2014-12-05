@@ -12,6 +12,17 @@ angular.module('challenger')
         });
 
         return deferred.promise;
+      },
+      findMyAndMyFriendsChallenges: function (userId) {
+        var deferred = $q.defer();
+
+        Restangular.all('challenges').one('user', userId).getList('timeline').then(function (challenges) {
+          deferred.resolve(challenges);
+        }, function (err) {
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
       }
     };
   })

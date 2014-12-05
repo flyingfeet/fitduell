@@ -1,0 +1,13 @@
+<ion-view title="Challenger" hide-back-button="true">
+  <ion-nav-buttons side="left" ng-if="isLoggedIn()">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header main">
+    <div ng-if="!isLoggedIn()" class="text-center">
+      <div>
+        Bitte logge dich ein um sämtliche Funktionalität nutzen zu können.
+      </div>
+      <button type="button" class="button button-calm" style="margin-top:20px;" ng-click="login()">Zum Login</button>
+    </div>
+  </ion-content>
+</ion-view>
