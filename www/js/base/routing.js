@@ -55,7 +55,8 @@ angular.module('challenger')
       })
       .state('app.myChallenges.details', {
         url: "/{id}",
-        templateUrl: "templates/challenges.details.html"
+        templateUrl: "templates/challenges.details.html",
+        controller: "ChallengeDetailsCtrl"
       })
       .state('app.newChallenge', {
         url: "/newChallenge",
@@ -135,7 +136,8 @@ angular.module('challenger')
       })
       .state('app.timeline.details', {
         url: "/{id}",
-        templateUrl: "templates/challenges.details.html"
+        templateUrl: "templates/challenges.details.html",
+        controller: "ChallengeDetailsCtrl"
       })
       .state('app.home', {
         url: "/home",
@@ -147,5 +149,4 @@ angular.module('challenger')
       });
 // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/timeline');
-  })
-;
+  });

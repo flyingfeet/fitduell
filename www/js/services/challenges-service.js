@@ -25,5 +25,4 @@ angular.module('challenger')
         return deferred.promise;
       }
     };
-  })
-;
+  });

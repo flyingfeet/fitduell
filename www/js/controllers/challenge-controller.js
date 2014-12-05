@@ -4,6 +4,9 @@ angular.module('challenger')
     console.log($scope.profile);
   })
 
+  .controller('ChallengeDetailsCtrl', function ($scope) {
+  })
+
   .controller('ChallengesCtrl', function ($scope, $state, store, ChallengesService) {
     $scope.findMyChallenges = function () {
       var userId = store.get('fd_profile').id;
