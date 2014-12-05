@@ -23,6 +23,28 @@ angular.module('challenger')
         });
 
         return deferred.promise;
+      },
+      findSports: function () {
+        var deferred = $q.defer();
+
+        Restangular.all('sports').getList().then(function (sports) {
+          deferred.resolve(sports);
+        }, function (err) {
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
+      },
+      createChallenge: function (challenge) {
+        var deferred = $q.defer();
+
+        Restangular.one('challenges').customPOST(challenge).then(function (challenge) {
+          deferred.resolve(challenge);
+        }, function (err) {
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
       }
     };
   });
