@@ -1,20 +1,28 @@
-<ul class="list">
-  <li class="item">
-    <h3>Herausforderer: {{selectedChallenge.requestingUser.nickname}}</h3>
+<ion-view title="Challenge Details">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header main">
+    <ul class="list">
+      <li class="item">
+        <h3>Herausforderer: {{selectedChallenge.requestingUser.nickname}}</h3>
 
-    <h3>Herausgeforderter: {{selectedChallenge.requestedUser.nickname}}</h3>
-    <h4>Kategorie: {{selectedChallenge.sport.name}}</h4>
-    <h4>Aufgabe: {{selectedChallenge.exercise.name}}</h4>
-    <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
-    <h4>Status: {{selectedChallenge.status}}</h4>
+        <h3>Herausgeforderter: {{selectedChallenge.requestedUser.nickname}}</h3>
+        <h4>Kategorie: {{selectedChallenge.sport.name}}</h4>
+        <h4>Aufgabe: {{selectedChallenge.exercise.name}}</h4>
+        <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
+        <h4>Status: {{selectedChallenge.status}}</h4>
 
-    <div class="row">
-      <div class="col">
-        <button class="button button-positive" ng-if="selectedChallenge.status === 'WAITING'">Annehmen</button>
-      </div>
-      <div class="col">
-        <button class="button button-assertive" ng-if="selectedChallenge.status === 'WAITING'">Ablehnen</button>
-      </div>
-    </div>
-  </li>
-</ul>
+        <div class="row">
+          <div class="col">
+            <button class="button button-positive" ng-if="selectedChallenge.status === 'WAITING'">Annehmen</button>
+          </div>
+          <div class="col">
+            <button class="button button-assertive" ng-if="selectedChallenge.status === 'WAITING'">Ablehnen</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+  </ion-content>
+</ion-view>

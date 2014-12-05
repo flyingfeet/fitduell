@@ -1,14 +1,22 @@
-<h2>Timeline</h2>
+<ion-view title="Timeline" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header main">
+    <h2>Timeline</h2>
 
-<ul class="list">
-  <li class="item" ng-repeat="challenge in timelineChallenges" ng-click="showDetails(challenge)">
-    <h3>Herausforderer: {{challenge.requestingUser.nickname}}</h3>
+    <ul class="list">
+      <li class="item" ng-repeat="challenge in timelineChallenges" ng-click="showDetails(challenge)">
+        <h3>Herausforderer: {{challenge.requestingUser.nickname}}</h3>
 
-    <h3>Herausgeforderter: {{challenge.requestedUser.nickname}}</h3>
-    <h4>Kategorie: {{challenge.sport.name}}</h4>
-    <h4>Aufgabe: {{challenge.exercise.name}}</h4>
-    <h4>Wert: {{challenge.exerciseValue}}</h4>
-    <h4>Status: {{challenge.status}}</h4>
-  </li>
-</ul>
+        <h3>Herausgeforderter: {{challenge.requestedUser.nickname}}</h3>
+        <h4>Kategorie: {{challenge.sport.name}}</h4>
+        <h4>Aufgabe: {{challenge.exercise.name}}</h4>
+        <h4>Wert: {{challenge.exerciseValue}}</h4>
+        <h4>Status: {{challenge.status}}</h4>
+      </li>
+    </ul>
+
+  </ion-content>
+</ion-view>
 
