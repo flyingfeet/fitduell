@@ -3,18 +3,40 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header main">
-    <h2>Timeline</h2>
 
-    <ul class="list">
-      <li class="item" ng-repeat="challenge in timelineChallenges" ng-click="showDetails(challenge)">
-        <h3>Herausforderer: {{challenge.requestingUser.nickname}}</h3>
+    <ul class="list card" ng-repeat="challenge in timelineChallenges"
+        ng-click="showDetails(challenge)">
+      <div class="item">
+        <!--<img src="mcfly.jpg">-->
+        <h3>{{challenge.requestingUser.nickname}} <strong>versus</strong> {{challenge.requestedUser.nickname}}</h3>
+      </div>
 
-        <h3>Herausgeforderter: {{challenge.requestedUser.nickname}}</h3>
+      <div class="item item-body">
         <h4>Kategorie: {{challenge.sport.name}}</h4>
         <h4>Aufgabe: {{challenge.exercise.name}}</h4>
         <h4>Wert: {{challenge.exerciseValue}}</h4>
         <h4>Status: {{challenge.status}}</h4>
-      </li>
+
+        <p>
+          <span class="subdued">{{challenge.likes}} Likes</span>
+          <a href="" class="subdued" style="margin-left: 10px;">{{challenge.comments.length}} Kommentare</a>
+        </p>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i>
+          Liken
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i>
+          Kommentieren
+        </a>
+        <!--<a class="tab-item" href="#">-->
+        <!--<i class="icon ion-share"></i>-->
+        <!--Share-->
+        <!--</a>-->
+      </div>
     </ul>
 
   </ion-content>
