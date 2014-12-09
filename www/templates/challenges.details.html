@@ -3,39 +3,55 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header main">
-    <ul class="list">
-      <li class="item">
-        <h3>Herausforderer: {{selectedChallenge.requestingUser.nickname}}</h3>
 
-        <h3>Herausgeforderter: {{selectedChallenge.requestedUser.nickname}}</h3>
+    <ul class="list card">
+      <div class="item">
+        <!--<img src="mcfly.jpg">-->
+        <h3>{{selectedChallenge.requestingUser.nickname}} <strong>versus</strong>
+          {{selectedChallenge.requestedUser.nickname}}</h3>
+      </div>
+
+      <div class="item item-body">
         <h4>Kategorie: {{selectedChallenge.sport.name}}</h4>
         <h4>Aufgabe: {{selectedChallenge.exercise.name}}</h4>
         <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
         <h4>Status: {{selectedChallenge.status}}</h4>
         <h4>Ablaufdatum: {{selectedChallenge.expireDate | date:'dd.MM.yyyy - HH:mm'}} Uhr</h4>
+      </div>
 
+      <div class="item tabs tabs-secondary tabs-icon-left" ng-if="selectedChallenge.status !== 'DENIED'">
         <!-- Aktzeptieren oder Ablehnen -->
-        <div class="row"
-             ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname">
-          <div class="col">
-            <button class="button button-positive" ng-click="updateStatus('ACCEPTED')">Annehmen</button>
-          </div>
-          <div class="col">
-            <button class="button button-assertive" ng-click="updateStatus('DENIED')">Ablehnen</button>
-          </div>
-        </div>
+        <a class="tab-item" href=""
+           ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname"
+           ng-click="updateStatus('ACCEPTED')">
+          <i class="icon ion-checkmark-round"></i>
+          Aktzeptieren
+        </a>
+        <a class="tab-item" href=""
+           ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname"
+           ng-click="updateStatus('DENIED')">
+          <i class="icon ion-close-round"></i>
+          Ablehnen
+        </a>
 
         <!-- Abschließen oder Aufgeben -->
-        <div class="row"
-             ng-if="selectedChallenge.status === 'ACCEPTED' && selectedChallenge.requestedUser.nickname === profile.nickname">
-          <div class="col">
-            <button class="button button-positive">Abschließen</button>
-          </div>
-          <div class="col">
-            <button class="button button-assertive" ng-click="updateStatus('DENIED')">Aufgeben</button>
-          </div>
-        </div>
-      </li>
+        <a class="tab-item" href=""
+           ng-if="selectedChallenge.status === 'ACCEPTED' && selectedChallenge.requestedUser.nickname === profile.nickname"
+           ng-click="updateStatus('DENIED')">
+          <i class="icon ion-ribbon-a"></i>
+          Abschließen
+        </a>
+        <a class="tab-item" href=""
+           ng-if="selectedChallenge.status === 'ACCEPTED' && selectedChallenge.requestedUser.nickname === profile.nickname"
+           ng-click="updateStatus('DENIED')">
+          <i class="icon ion-flag"></i>
+          Aufgeben
+        </a>
+        <!--<a class="tab-item" href="#">-->
+        <!--<i class="icon ion-share"></i>-->
+        <!--Share-->
+        <!--</a>-->
+      </div>
     </ul>
 
   </ion-content>
