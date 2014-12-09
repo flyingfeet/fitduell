@@ -14,7 +14,6 @@ angular.module('challenger')
       sportsPromise.then(function (sports) {
         $scope.sports = sports;
         $scope.challenge.sport = $scope.sports[0];
-        console.log($scope.challenge.sport);
         $scope.exercises = $scope.sports[0].exercises;
         $scope.challenge.exercise = $scope.exercises[0];
       }, function (err) {
@@ -43,7 +42,8 @@ angular.module('challenger')
     loadSports();
   })
 
-  .controller('ChallengeDetailsCtrl', function ($scope) {
+  .controller('ChallengeDetailsCtrl', function ($scope, store) {
+    $scope.profile = store.get('fd_profile');
   })
 
   .controller('ChallengesCtrl', function ($scope, $state, store, ChallengesService) {

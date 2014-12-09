@@ -15,10 +15,10 @@
 
         <div class="row">
           <div class="col">
-            <button class="button button-positive" ng-if="selectedChallenge.status === 'WAITING'">Annehmen</button>
+            <button class="button button-positive" ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname">Annehmen</button>
           </div>
           <div class="col">
-            <button class="button button-assertive" ng-if="selectedChallenge.status === 'WAITING'">Ablehnen</button>
+            <button class="button button-assertive" ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname">Ablehnen</button>
           </div>
         </div>
       </li>
