@@ -12,13 +12,27 @@
         <h4>Aufgabe: {{selectedChallenge.exercise.name}}</h4>
         <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
         <h4>Status: {{selectedChallenge.status}}</h4>
+        <h4>Ablaufdatum: {{selectedChallenge.expireDate | date:'dd.MM.yyyy - HH:mm'}} Uhr</h4>
 
-        <div class="row">
+        <!-- Aktzeptieren oder Ablehnen -->
+        <div class="row"
+             ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname">
           <div class="col">
-            <button class="button button-positive" ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname">Annehmen</button>
+            <button class="button button-positive" ng-click="updateStatus('ACCEPTED')">Annehmen</button>
           </div>
           <div class="col">
-            <button class="button button-assertive" ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname">Ablehnen</button>
+            <button class="button button-assertive" ng-click="updateStatus('DENIED')">Ablehnen</button>
+          </div>
+        </div>
+
+        <!-- Abschließen oder Aufgeben -->
+        <div class="row"
+             ng-if="selectedChallenge.status === 'ACCEPTED' && selectedChallenge.requestedUser.nickname === profile.nickname">
+          <div class="col">
+            <button class="button button-positive">Abschließen</button>
+          </div>
+          <div class="col">
+            <button class="button button-assertive" ng-click="updateStatus('DENIED')">Aufgeben</button>
           </div>
         </div>
       </li>

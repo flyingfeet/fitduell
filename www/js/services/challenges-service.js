@@ -45,6 +45,17 @@ angular.module('challenger')
         });
 
         return deferred.promise;
+      },
+      updateStatus: function (id, status) {
+        var deferred = $q.defer();
+
+        Restangular.all('challenges').one(id, status).post().then(function (challenge) {
+          deferred.resolve(challenge);
+        }, function (err) {
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
       }
     };
   });

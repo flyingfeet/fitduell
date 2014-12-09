@@ -23,7 +23,7 @@ angular.module('challenger')
 
     $scope.changeExercises = function () {
       _.find($scope.sports, function (sport) {
-        if(sport.id === $scope.challenge.sport.id) {
+        if (sport.id === $scope.challenge.sport.id) {
           $scope.exercises = sport.exercises;
           $scope.challenge.exercise = $scope.exercises[0];
         }
@@ -42,8 +42,24 @@ angular.module('challenger')
     loadSports();
   })
 
-  .controller('ChallengeDetailsCtrl', function ($scope, store) {
+  .controller('ChallengeDetailsCtrl', function ($scope, $state, store, ChallengesService) {
     $scope.profile = store.get('fd_profile');
+
+    $scope.updateStatus = function (status) {
+      var id = $state.params.id;
+
+      var promise = ChallengesService.updateStatus(id, status);
+      promise.then(function (challenge) {
+        $scope.selectedChallenge = challenge;
+        for (var i = 0; i < $scope.timelineChallenges.length; i++) {
+          if ($scope.timelineChallenges[i].id === $scope.selectedChallenge.id) {
+            $scope.timelineChallenges[i] = challenge;
+          }
+        }
+      }, function (err) {
+        console.log(err);
+      });
+    };
   })
 
   .controller('ChallengesCtrl', function ($scope, $state, store, ChallengesService) {
