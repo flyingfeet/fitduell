@@ -17,3 +17,8 @@
   -webkit-box-shadow: #2c3e50 1px 0 6px 1px;
   box-shadow: #2c3e50 1px 0 6px 1px;
 }
+
+#map_canvas{
+  width: 200px;
+  height: 400px;
+}
