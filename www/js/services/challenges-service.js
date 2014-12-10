@@ -46,10 +46,21 @@ angular.module('challenger')
 
         return deferred.promise;
       },
-      updateStatus: function (id, status) {
+      updateStatus: function (id, status, winner) {
         var deferred = $q.defer();
 
-        Restangular.all('challenges').one(id, status).post().then(function (challenge) {
+        Restangular.one('challenges', id).one(status, winner).post().then(function (challenge) {
+          deferred.resolve(challenge);
+        }, function (err) {
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
+      },
+      uploadProofImage: function (id, image) {
+        var deferred = $q.defer();
+
+        Restangular.one("challenges", id).withHttpConfig({transformRequest: angular.identity}).customPOST(image, "proofImage", {}, {}).then(function (challenge) {
           deferred.resolve(challenge);
         }, function (err) {
           deferred.reject(err);

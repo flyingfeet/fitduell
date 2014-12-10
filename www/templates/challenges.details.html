@@ -5,10 +5,19 @@
   <ion-content class="has-header main">
 
     <ul class="list card">
-      <div class="item">
+      <div class="item" style="padding: 0px;">
         <!--<img src="mcfly.jpg">-->
-        <h3>{{selectedChallenge.requestingUser.nickname}} <strong>versus</strong>
-          {{selectedChallenge.requestedUser.nickname}}</h3>
+        <div class="row">
+          <div class="col">
+            <img src="{{selectedChallenge.requestingUser.avatar}}" width="50px"/>
+          </div>
+          <div class="col" style="text-align: center;">
+            <h3><strong>versus</strong></h3>
+          </div>
+          <div class="col" style="text-align: right;">
+            <img src="{{selectedChallenge.requestedUser.avatar}}" width="50px"/>
+          </div>
+        </div>
       </div>
 
       <div class="item item-body">
@@ -17,19 +26,27 @@
         <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
         <h4>Status: {{selectedChallenge.status}}</h4>
         <h4>Ablaufdatum: {{selectedChallenge.expireDate | date:'dd.MM.yyyy - HH:mm'}} Uhr</h4>
+
+        <div class="row" style="padding: 0px;">
+          <div class="col" style="padding: 0px;">
+            <img src="data:image/jpeg;base64,{{selectedChallenge.proofImageAsString}}"
+                 ng-if="selectedChallenge.proofImageAsString" width="100%" />
+          </div>
+        </div>
       </div>
 
-      <div class="item tabs tabs-secondary tabs-icon-left" ng-if="selectedChallenge.status !== 'DENIED'">
+      <div class="item tabs tabs-secondary tabs-icon-left"
+           ng-if="selectedChallenge.status != 'DENIED' || selectedChallenge.status != 'TOBEPROOFED'">
         <!-- Aktzeptieren oder Ablehnen -->
         <a class="tab-item" href=""
            ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname"
-           ng-click="updateStatus('ACCEPTED')">
+           ng-click="updateStatus('ACCEPTED', 'NONE')">
           <i class="icon ion-checkmark-round"></i>
           Aktzeptieren
         </a>
         <a class="tab-item" href=""
            ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname"
-           ng-click="updateStatus('DENIED')">
+           ng-click="updateStatus('DENIED', 'NONE')">
           <i class="icon ion-close-round"></i>
           Ablehnen
         </a>
@@ -37,15 +54,29 @@
         <!-- Abschließen oder Aufgeben -->
         <a class="tab-item" href=""
            ng-if="selectedChallenge.status === 'ACCEPTED' && selectedChallenge.requestedUser.nickname === profile.nickname"
-           ng-click="updateStatus('DENIED')">
+           ng-click="getPicture()">
           <i class="icon ion-ribbon-a"></i>
           Abschließen
         </a>
         <a class="tab-item" href=""
            ng-if="selectedChallenge.status === 'ACCEPTED' && selectedChallenge.requestedUser.nickname === profile.nickname"
-           ng-click="updateStatus('DENIED')">
+           ng-click="updateStatus('DENIED', 'NONE')">
           <i class="icon ion-flag"></i>
           Aufgeben
+        </a>
+
+        <!-- Bestätigen oder Ablehnen -->
+        <a class="tab-item" href=""
+           ng-if="selectedChallenge.status === 'TOBEPROOFED' && selectedChallenge.requestingUser.nickname === profile.nickname"
+           ng-click="updateStatus('PASSED', 'REQUESTED')">
+          <i class="icon ion-checkmark-round"></i>
+          Bestätigen
+        </a>
+        <a class="tab-item" href=""
+           ng-if="selectedChallenge.status === 'TOBEPROOFED' && selectedChallenge.requestingUser.nickname === profile.nickname"
+           ng-click="updateStatus('DENIED', 'REQUESTING')">
+          <i class="icon ion-close-round"></i>
+          Ablehnen
         </a>
         <!--<a class="tab-item" href="#">-->
         <!--<i class="icon ion-share"></i>-->

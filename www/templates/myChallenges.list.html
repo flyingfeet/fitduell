@@ -4,11 +4,21 @@
   </ion-nav-buttons>
   <ion-content class="has-header main">
 
-    <ul class="list card" ng-repeat="challenge in challenges"
-        ng-click="showDetails(challenge)">
-      <div class="item">
+    <div class="list card" ng-repeat="challenge in challenges"
+         ng-click="showDetails(challenge)">
+      <div class="item" style="padding: 0px;">
         <!--<img src="mcfly.jpg">-->
-        <h3>{{challenge.requestingUser.nickname}} <strong>versus</strong> {{challenge.requestedUser.nickname}}</h3>
+        <div class="row">
+          <div class="col">
+            <img src="{{challenge.requestingUser.avatar}}" width="50px"/>
+          </div>
+          <div class="col" style="text-align: center;">
+            <h3><strong>versus</strong></h3>
+          </div>
+          <div class="col" style="text-align: right;">
+            <img src="{{challenge.requestedUser.avatar}}" width="50px"/>
+          </div>
+        </div>
       </div>
 
       <div class="item item-body">
@@ -37,7 +47,7 @@
         <!--Share-->
         <!--</a>-->
       </div>
-    </ul>
+    </div>
 
   </ion-content>
 </ion-view>

@@ -17,6 +17,12 @@ angular.module('challenger')
     else {
       $scope.profile.id = profile.id;
     }
+    if (profile.picture) {
+      $scope.profile.avatar = profile.picture;
+    }
+    else {
+      $scope.profile.avatar = profile.avatar;
+    }
     if (profile.nickname) {
       $scope.profile.nickname = profile.nickname;
     }

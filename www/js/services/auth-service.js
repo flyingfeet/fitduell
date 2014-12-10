@@ -9,6 +9,7 @@ angular.module('challenger')
           device: 'Mobile device'
         }
       }, function(profile, token, accessToken, state, refreshToken) {
+        console.log(profile);
         if(!profile.email_verified) {
           $state.go('app.checkMails');
         }
