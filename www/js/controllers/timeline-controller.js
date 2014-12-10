@@ -1,6 +1,6 @@
 angular.module('challenger')
 
-  .controller('TimelineCtrl', function ($scope, $state, store, ChallengesService) {
+  .controller('TimelineCtrl', function ($scope, $state, $cordovaToast, store, ChallengesService) {
     $scope.findMyAndMyFriendsChallenges = function () {
       var userId = store.get('fd_profile').id;
 
