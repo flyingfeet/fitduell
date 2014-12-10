@@ -67,6 +67,17 @@ angular.module('challenger')
         });
 
         return deferred.promise;
+      },
+      likeChallenge: function (id) {
+        var deferred = $q.defer();
+
+        Restangular.one("challenges", id).one('', 'like').post().then(function (challenge) {
+          deferred.resolve(challenge);
+        }, function (err) {
+          deferred.resolve(err);
+        });
+
+        return deferred.promise;
       }
     };
   });

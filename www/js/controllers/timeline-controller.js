@@ -17,5 +17,15 @@ angular.module('challenger')
       $state.go('app.timeline.details', {id: challenge.id});
     };
 
+    $scope.likeChallenge = function (id, index) {
+      var promise = ChallengesService.likeChallenge(id);
+      promise.then(function (challenge) {
+        $scope.timelineChallenges[index] = challenge;
+        $cordovaToast.showShortBottom("Challenge liked.");
+      }, function (err) {
+        $cordovaToast.showLongBottom(err);
+      });
+    };
+
     $scope.findMyAndMyFriendsChallenges();
   });

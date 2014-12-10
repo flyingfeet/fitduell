@@ -4,9 +4,8 @@
   </ion-nav-buttons>
   <ion-content class="has-header main">
 
-    <div class="list card" ng-repeat="challenge in challenges"
-         ng-click="showDetails(challenge)">
-      <div class="item" style="padding: 0px;">
+    <div class="list card" ng-repeat="challenge in challenges">
+      <div class="item" style="padding: 0px;" ng-click="showDetails(challenge)">
         <!--<img src="mcfly.jpg">-->
         <div class="row">
           <div class="col">
@@ -21,7 +20,7 @@
         </div>
       </div>
 
-      <div class="item item-body">
+      <div class="item item-body" ng-click="showDetails(challenge)">
         <h4>Kategorie: {{challenge.sport.name}}</h4>
         <h4>Aufgabe: {{challenge.exercise.name}}</h4>
         <h4>Wert: {{challenge.exerciseValue}}</h4>
@@ -34,7 +33,7 @@
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#">
+        <a class="tab-item" href="" ng-click="likeChallenge(challenge.id, $index)">
           <i class="icon ion-thumbsup"></i>
           Liken
         </a>

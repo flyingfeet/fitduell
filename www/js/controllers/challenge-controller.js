@@ -49,10 +49,10 @@ angular.module('challenger')
     console.log($scope.selectedChallenge);
 
     var cameraOptions = {
-      quality : 100,
-      destinationType : Camera.DestinationType.DATA_URL,
-      sourceType : Camera.PictureSourceType.CAMERA,
-      allowEdit : true,
+      quality: 100,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: true,
       encodingType: Camera.EncodingType.JPEG,
       targetWidth: 300,
       targetHeight: 300,
@@ -61,7 +61,7 @@ angular.module('challenger')
     };
 
     $scope.getPicture = function () {
-      $cordovaCamera.getPicture(cameraOptions).then(function(imageData) {
+      $cordovaCamera.getPicture(cameraOptions).then(function (imageData) {
         var promise = ChallengesService.uploadProofImage(id, imageData);
         promise.then(function (challenge) {
           $scope.selectedChallenge = challenge;
@@ -73,7 +73,7 @@ angular.module('challenger')
 
           $cordovaToast.showShortBottom("Bild erfolgreich hochgeladen.");
         })
-      }, function(err) {
+      }, function (err) {
         $cordovaToast.showLongBottom(err);
       });
     };
@@ -93,7 +93,7 @@ angular.module('challenger')
     };
   })
 
-  .controller('ChallengesCtrl', function ($scope, $state, store, ChallengesService) {
+  .controller('ChallengesCtrl', function ($scope, $state, $cordovaToast, store, ChallengesService) {
     $scope.findMyChallenges = function () {
       var userId = store.get('fd_profile').id;
 
@@ -108,6 +108,16 @@ angular.module('challenger')
     $scope.showDetails = function (challenge) {
       $scope.selectedChallenge = challenge;
       $state.go('app.myChallenges.details', {id: challenge.id});
+    };
+
+    $scope.likeChallenge = function (id, index) {
+      var promise = ChallengesService.likeChallenge(id);
+      promise.then(function (challenge) {
+        $scope.challenges[index] = challenge;
+        $cordovaToast.showShortBottom("Challenge liked.");
+      }, function (err) {
+        $cordovaToast.showLongBottom(err);
+      });
     };
 
     $scope.findMyChallenges();
