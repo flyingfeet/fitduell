@@ -8,7 +8,7 @@ angular.module('challenger')
   // Initialize the map plugin
   var map = plugin.google.maps.Map.getMap(mapDiv);
 
-  map.on(plugin.google.maps.event.MAP_READY, onMapInit);
+  //map.on(plugin.google.maps.event.MAP_READY, onMapInit);
 
   // $scope.onMapInit = function (map) {
   // };
