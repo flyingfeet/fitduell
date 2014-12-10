@@ -86,7 +86,8 @@ angular.module('challenger')
         url: "/location",
         views: {
           'menuContent': {
-            templateUrl: "templates/location.html"
+            templateUrl: "templates/location.html",
+            controller: "LocationCtrl"
           }
         },
         data: {
