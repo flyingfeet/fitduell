@@ -2,46 +2,77 @@ angular.module('challenger')
 
 .controller('LocationCtrl', function ($scope, $cordovaGeolocation) {
 
-$cordovaGeolocation
-    .getCurrentPosition()
-    .then(function (position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
-          console.log(lat+" "+long);
-          $scope.map = { center: { latitude: lat, longitude: long }, zoom: 16 };
 
-          $scope.marker = {
-      id: 0,
-      coords: {
-        latitude: lat,
-        longitude: long
-      },options: { draggable: true },
-      events: {
-        dragend: function (marker, eventName, args) {
-          $log.log('marker dragend');
-          var lat = marker.getPosition().lat();
-          var lon = marker.getPosition().lng();
-          $log.log(lat);
-          $log.log(lon);
+  $cordovaGeolocation.getCurrentPosition().then(function (position) {
+    var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-          $scope.marker.options = {
-            draggable: true,
-            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-            labelAnchor: "100 0",
-            labelClass: "marker-labels"
-          };
-        }
-      }
-    };
+    $scope.map = new google.maps.Map(document.getElementById('map-canvas'), {
+      center: currentPosition,
+      zoom: 15,
+      offsetWidth: 0
+    });
 
+    var myPosition = new google.maps.Marker({
+      map: $scope.map,
+      position: currentPosition
+    });
 
+    $scope.getPlaces(position.coords.latitude,position.coords.longitude);
 
-    }, function(err) {
+  }, function(err) {
       // error
     });
 
 
 
+  $scope.getPlaces = function(lat,long){
+
+    var request = {
+      location: {
+        lat: lat,
+        lng: long
+      },
+      radius: 5000,
+      types: ['gym']
+    };
+    $scope.infoWindow = new google.maps.InfoWindow();
+    $scope.service = new google.maps.places.PlacesService($scope.map);
+
+    $scope.service.nearbySearch(request,  $scope.callback);
+  }
+
+  $scope.callback = function (results, status) {
+
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        $scope.createMarker(results[i]);
+      }
+    }
+  }
+
+  $scope.createMarker = function (place) {
+    var image = 'img/fitness.png';
+
+    var marker = new google.maps.Marker({
+      map: $scope.map,
+      position: place.geometry.location,
+      icon: image
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+     $scope.service.getDetails(place, function(result, status) {
+        if (status != google.maps.places.PlacesServiceStatus.OK) {
+          alert(status);
+          return;
+        }
+        var infoContent = "<h4>"+result.name+"</h4>"+result.vicinity;
+
+
+        $scope.infoWindow.setContent(infoContent);
+        $scope.infoWindow.open($scope.map, marker);
+      });
+    });
+  }
 
 
 
