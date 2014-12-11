@@ -51,7 +51,7 @@ angular.module('challenger')
   }
 
   $scope.createMarker = function (place) {
-    var image = 'img/fitness.png';
+    var image = 'img/gym.png';
 
     var marker = new google.maps.Marker({
       map: $scope.map,
