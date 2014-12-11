@@ -1,12 +1,14 @@
 <ion-view title="Umgebung">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
-  <ion-content class="has-header main">
-    <h1>Umgebung</h1>
+<ion-nav-buttons side="left">
+<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+</ion-nav-buttons>
+<ion-content class="has-header main">
+<h1>Umgebung</h1>
 
-      <div id="map_canvas">
-      </div>
+<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+  <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+  </ui-gmap-marker>
+</ui-gmap-google-map>
 
-  </ion-content>
+</ion-content>
 </ion-view>
