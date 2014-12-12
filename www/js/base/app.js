@@ -1,4 +1,4 @@
-angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt', 'restangular', 'angular-loading-bar', 'ngCordova', 'uiGmapgoogle-maps'])
+angular.module('challenger', ['ionic', 'auth0', 'angular-storage', 'angular-jwt', 'restangular', 'angular-loading-bar', 'ngCordova'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
