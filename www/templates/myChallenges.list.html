@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content class="has-header main">
 
-    <div class="list card" ng-repeat="challenge in challenges">
+    <div class="list" ng-repeat="challenge in challenges">
       <div class="item" style="padding: 0px;" ng-click="showDetails(challenge)">
         <!--<img src="mcfly.jpg">-->
         <div class="row">
@@ -21,10 +21,17 @@
       </div>
 
       <div class="item item-body" ng-click="showDetails(challenge)">
-        <h4>Kategorie: {{challenge.sport.name}}</h4>
-        <h4>Aufgabe: {{challenge.exercise.name}}</h4>
-        <h4>Wert: {{challenge.exerciseValue}}</h4>
-        <h4>Status: {{challenge.status}}</h4>
+        <div class="row" style="padding: 0px;">
+          <div class="col-67">
+            <h4>Kategorie: {{challenge.sport.name}}</h4>
+            <h4>Aufgabe: {{challenge.exercise.name}}</h4>
+            <h4>Wert: {{challenge.exerciseValue}}</h4>
+          </div>
+
+          <div class="col-33">
+            <i class="icon {{status[challenge.status]}} custom-icon" style="font-size: 100px"></i>
+          </div>
+        </div>
 
         <p>
           <span class="subdued">{{challenge.likes}} Likes</span>

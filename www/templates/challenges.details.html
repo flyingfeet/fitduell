@@ -30,7 +30,7 @@
         <div class="row" style="padding: 0px;">
           <div class="col" style="padding: 0px;">
             <img src="data:image/jpeg;base64,{{selectedChallenge.proofImageAsString}}"
-                 ng-if="selectedChallenge.proofImageAsString" width="100%" />
+                 ng-if="selectedChallenge.proofImageAsString" width="100%"/>
           </div>
         </div>
       </div>
@@ -84,6 +84,27 @@
         <!--</a>-->
       </div>
     </ul>
+
+    <h3>Kommentare</h3>
+
+    <div class="list">
+      <li class="item" style="padding: 5px;">
+        <div class="row">
+          <div class="col-25">
+            <img src="{{profile.avatar}}" width="45px"/>
+          </div>
+          <div class="col-75">
+            <label class="item item-input">
+              <input type="text" placeholder="Schreibe einen Kommentar">
+            </label>
+          </div>
+        </div>
+
+      </li>
+      <li class="item" ng-repeat="comment in selectedChallenge.comments" ng-if="selectedChallenge.comments.length > 0">
+        {{comment.message}}
+      </li>
+    </div>
 
   </ion-content>
 </ion-view>

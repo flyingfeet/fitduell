@@ -8,6 +8,46 @@
   border: 1px solid #B2B2B2;
 }
 
+.custom-icon {
+  font-size: 100px;
+}
+
+.ion-clock, .ion-help-circled, .ion-gear-b {
+  color: #FFA500;
+}
+
+.ion-minus-circled {
+  color: #FF0000;
+}
+
+.ion-checkmark-circled {
+  color: #3B5998;
+}
+
+.custom-nav-bar {
+  background-color: #3B5998 !important;
+}
+
+.custom-nav-bar h1 {
+  color: #FFFFFF !important;
+}
+
+.custom-nav-bar .ion-navicon {
+  color: #FFFFFF;
+}
+
+.custom-nav-bar .ion-navicon:hover {
+  color: #FFFFFF;
+}
+
+.back-button {
+  color: #FFFFFF !important;
+}
+
+.list .tabs {
+  margin: auto;
+}
+
 #loading-bar .bar {
   background: #2c3e50;
 }
