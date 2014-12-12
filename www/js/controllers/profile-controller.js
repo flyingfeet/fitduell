@@ -59,7 +59,7 @@ angular.module('challenger')
         }
         else {
           store.set('fd_profile', profile);
-          $state.go('app.timeline');
+          $state.go('app.timeline.list');
         }
       }, function (err) {
         console.log(err);
