@@ -2,13 +2,25 @@
   <ion-nav-buttons side="left" ng-if="isLoggedIn()">
   </ion-nav-buttons>
   <ion-content class="has-header main">
-    <div class="card">
-      <div class="item item-divider">
+
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="{{profile.avatar}}" width="100px;"/>
+
         <h2>{{profile.firstname}} {{profile.lastname}} ({{profile.nickname}})</h2>
 
         <p>{{profile.birthdate | date: 'dd.MM.yyyy'}}</p>
       </div>
-      <div class="item item-text-wrap">
+
+      <div class="item item-body" style="padding: 0px;">
+        <div class="row">
+          <div class="col">
+            <h3 style="margin-top: 0px;">Punkte: {{profile.points}}</h3>
+
+            <h3>Rang: {{profile.rang}}</h3>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col" ng-show="friendship === undefined && loaded && !waiting">
             <button type="button" class="button button-full button-primary custom-button"
