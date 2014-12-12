@@ -48,7 +48,17 @@ angular.module('challenger')
 
     $scope.createComment = function (comment) {
       comment.user = $scope.profile;
-      console.log(comment);
+      var promise = ChallengesService.createComment($scope.selectedChallenge.id, comment);
+      promise.then(function (challenge) {
+        $scope.selectedChallenge = challenge;
+        for (var i = 0; i < $scope.timelineChallenges.length; i++) {
+          if ($scope.timelineChallenges[i].id === $scope.selectedChallenge.id) {
+            $scope.timelineChallenges[i] = challenge;
+          }
+        }
+      }, function (err) {
+        $cordovaToast.showLongBottom(err);
+      });
     };
 
     //var cameraOptions = {

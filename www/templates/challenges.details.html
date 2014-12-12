@@ -90,21 +90,18 @@
     <div class="list">
       <li class="item" style="padding: 5px;">
         <div class="row">
-          <div class="col-25">
-            <img src="{{profile.avatar}}" width="45px"/>
-          </div>
-          <div class="col-50">
+          <div class="col-75">
             <label class="item item-input">
               <input type="text" placeholder="Schreibe einen Kommentar" ng-model="comment.message">
             </label>
           </div>
-          <div class="col-25" style="text-align: right;font-size: 45px;">
+          <div class="col-25" style="text-align: right;font-size: 35px;line-height: 45px;">
             <i class="icon ion-paper-airplane" ng-click="createComment(comment)"></i>
           </div>
         </div>
 
       </li>
-      <li class="item" ng-repeat="comment in selectedChallenge.comments" ng-if="selectedChallenge.comments.length > 0">
+      <li class="item" ng-repeat="comment in selectedChallenge.comments" ng-if="selectedChallenge.comments.length > 0" style="white-space: normal;">
         <strong>{{comment.user.nickname}}:</strong> {{comment.message}}
       </li>
     </div>

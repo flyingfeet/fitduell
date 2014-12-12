@@ -78,6 +78,17 @@ angular.module('challenger')
         });
 
         return deferred.promise;
+      },
+      createComment: function (id, comment) {
+        var deferred = $q.defer();
+
+        Restangular.one('challenges', id).one('', 'comment').customPOST(comment).then(function (challenge) {
+          deferred.resolve(challenge);
+        }, function (err) {
+          deferred.resolve(err);
+        });
+
+        return deferred.promise;
       }
     };
   });
