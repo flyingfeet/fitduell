@@ -1,8 +1,6 @@
 angular.module('challenger')
 
-  .controller('ChallengeCreator', function ($scope, $cordovaToast, store, ChallengesService) {
-    console.log($scope.profile);
-
+  .controller('ChallengeCreator', function ($rootScope, $scope, $state, $cordovaToast, store, ChallengesService) {
     $scope.challenge = {};
     $scope.challenge.requestedUser = $scope.profile;
     $scope.challenge.requestingUser = store.get('fd_profile');
@@ -33,11 +31,13 @@ angular.module('challenger')
     $scope.createChallenge = function () {
       var promise = ChallengesService.createChallenge($scope.challenge);
       promise.then(function (challenge) {
+        $rootScope.selectedChallenge = challenge;
         $cordovaToast.showShortBottom("Herausforderung gesendet.");
+        $state.go('app.timeline.details', {id: challenge.id});
       }, function (err) {
         console.log(err);
       });
-    }
+    };
 
     loadSports();
   })
