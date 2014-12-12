@@ -91,7 +91,9 @@ angular.module('challenger')
     };
   })
 
-  .controller('ChallengesCtrl', function ($scope, $state, $cordovaToast, store, ChallengesService) {
+  .controller('ChallengesCtrl', function ($scope, $state, $cordovaToast, store, ChallengesService, STATUS) {
+    $scope.status = STATUS;
+
     $scope.findMyChallenges = function () {
       var userId = store.get('fd_profile').id;
 
