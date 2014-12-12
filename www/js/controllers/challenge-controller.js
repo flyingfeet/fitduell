@@ -46,6 +46,11 @@ angular.module('challenger')
     $scope.profile = store.get('fd_profile');
     var id = $state.params.id;
 
+    $scope.createComment = function (comment) {
+      comment.user = $scope.profile;
+      console.log(comment);
+    };
+
     //var cameraOptions = {
     //  quality: 100,
     //  destinationType: Camera.DestinationType.DATA_URL,

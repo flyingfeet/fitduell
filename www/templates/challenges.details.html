@@ -1,4 +1,4 @@
-<ion-view title="Challenge Details">
+<ion-view title="Details">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -93,16 +93,19 @@
           <div class="col-25">
             <img src="{{profile.avatar}}" width="45px"/>
           </div>
-          <div class="col-75">
+          <div class="col-50">
             <label class="item item-input">
-              <input type="text" placeholder="Schreibe einen Kommentar">
+              <input type="text" placeholder="Schreibe einen Kommentar" ng-model="comment.message">
             </label>
+          </div>
+          <div class="col-25" style="text-align: right;font-size: 45px;">
+            <i class="icon ion-paper-airplane" ng-click="createComment(comment)"></i>
           </div>
         </div>
 
       </li>
       <li class="item" ng-repeat="comment in selectedChallenge.comments" ng-if="selectedChallenge.comments.length > 0">
-        {{comment.message}}
+        <strong>{{comment.user.nickname}}:</strong> {{comment.message}}
       </li>
     </div>
 
