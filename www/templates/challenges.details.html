@@ -8,14 +8,18 @@
       <div class="item" style="padding: 0px;">
         <!--<img src="mcfly.jpg">-->
         <div class="row">
-          <div class="col">
+          <div class="col"
+               ng-click="loggedInUser.id !== selectedChallenge.requestingUser.id ? showProfile(selectedChallenge.requestingUser) : goToMyProfile()">
             <img src="{{selectedChallenge.requestingUser.avatar}}" width="50px"/>
+            <p>{{selectedChallenge.requestingUser.nickname}}</p>
           </div>
           <div class="col" style="text-align: center;">
             <h3><strong>versus</strong></h3>
           </div>
-          <div class="col" style="text-align: right;">
+          <div class="col" style="text-align: right;"
+               ng-click="loggedInUser.id !== selectedChallenge.requestedUser.id ? showProfile(selectedChallenge.requestedUser) : goToMyProfile()">
             <img src="{{selectedChallenge.requestedUser.avatar}}" width="50px"/>
+            <p>{{selectedChallenge.requestedUser.nickname}}</p>
           </div>
         </div>
       </div>

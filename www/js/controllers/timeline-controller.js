@@ -1,7 +1,8 @@
 angular.module('challenger')
 
-  .controller('TimelineCtrl', function ($scope, $state, $cordovaToast, store, ChallengesService, STATUS) {
+  .controller('TimelineCtrl', function ($rootScope, $scope, $state, $cordovaToast, store, ChallengesService, STATUS) {
     $scope.status = STATUS;
+    $scope.loggedInUser = store.get('fd_profile');
 
     $scope.findMyAndMyFriendsChallenges = function () {
       var userId = store.get('fd_profile').id;
@@ -20,7 +21,7 @@ angular.module('challenger')
     };
 
     $scope.showDetails = function (challenge) {
-      $scope.selectedChallenge = challenge;
+      $rootScope.selectedChallenge = challenge;
       $state.go('app.timeline.details', {id: challenge.id});
     };
 

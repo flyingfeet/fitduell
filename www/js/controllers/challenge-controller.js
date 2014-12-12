@@ -125,7 +125,7 @@ angular.module('challenger')
     };
   })
 
-  .controller('ChallengesCtrl', function ($scope, $state, $cordovaToast, store, ChallengesService, STATUS) {
+  .controller('ChallengesCtrl', function ($rootScope, $scope, $state, $cordovaToast, store, ChallengesService, STATUS) {
     $scope.status = STATUS;
 
     $scope.findMyChallenges = function () {
@@ -140,7 +140,7 @@ angular.module('challenger')
     };
 
     $scope.showDetails = function (challenge) {
-      $scope.selectedChallenge = challenge;
+      $rootScope.selectedChallenge = challenge;
       $state.go('app.myChallenges.details', {id: challenge.id});
     };
 

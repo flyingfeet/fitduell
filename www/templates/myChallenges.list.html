@@ -8,14 +8,18 @@
       <div class="item" style="padding: 0px;" ng-click="showDetails(challenge)">
         <!--<img src="mcfly.jpg">-->
         <div class="row">
-          <div class="col">
+          <div class="col"
+               ng-click="loggedInUser.id !== challenge.requestingUser.id ? showProfile(challenge.requestingUser) : goToMyProfile()">
             <img src="{{challenge.requestingUser.avatar}}" width="50px"/>
+            <p>{{challenge.requestingUser.nickname}}</p>
           </div>
           <div class="col" style="text-align: center;">
             <h3><strong>versus</strong></h3>
           </div>
-          <div class="col" style="text-align: right;">
+          <div class="col" style="text-align: right;"
+               ng-click="loggedInUser.id !== challenge.requestedUser.id ? showProfile(challenge.requestedUser) : goToMyProfile()">
             <img src="{{challenge.requestedUser.avatar}}" width="50px"/>
+            <p>{{challenge.requestedUser.nickname}}</p>
           </div>
         </div>
       </div>
@@ -44,7 +48,7 @@
           <i class="icon ion-thumbsup"></i>
           Liken
         </a>
-        <a class="tab-item" href="#">
+        <a class="tab-item" href="" ng-click="showDetails(challenge)">
           <i class="icon ion-chatbox"></i>
           Kommentieren
         </a>
