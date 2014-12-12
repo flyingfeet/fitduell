@@ -21,16 +21,23 @@
       </div>
 
       <div class="item item-body">
-        <h4>Kategorie: {{selectedChallenge.sport.name}}</h4>
-        <h4>Aufgabe: {{selectedChallenge.exercise.name}}</h4>
-        <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
-        <h4>Status: {{selectedChallenge.status}}</h4>
-        <h4>Ablaufdatum: {{selectedChallenge.expireDate | date:'dd.MM.yyyy - HH:mm'}} Uhr</h4>
+        <div class="row">
+          <div class="col-67">
+            <h4>Kategorie: {{selectedChallenge.sport.name}}</h4>
+            <h4>Aufgabe: {{selectedChallenge.exercise.name}}</h4>
+            <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
+            <h4>Ablaufdatum: {{selectedChallenge.expireDate | date:'dd.MM.yyyy - HH:mm'}} Uhr</h4>
+          </div>
 
-        <div class="row" style="padding: 0px;">
+          <div class="col-33">
+            <i class="icon {{status[selectedChallenge.status]}} custom-icon" style="font-size: 100px"></i>
+          </div>
+        </div>
+
+        <div class="row" ng-if="selectedChallenge.proofImageAsString">
           <div class="col" style="padding: 0px;">
-            <img src="data:image/jpeg;base64,{{selectedChallenge.proofImageAsString}}"
-                 ng-if="selectedChallenge.proofImageAsString" width="100%"/>
+            <h3><strong>Beweisfoto:</strong></h3>
+            <img src="data:image/jpeg;base64,{{selectedChallenge.proofImageAsString}}" width="100%"/>
           </div>
         </div>
       </div>
@@ -101,7 +108,8 @@
         </div>
 
       </li>
-      <li class="item" ng-repeat="comment in selectedChallenge.comments" ng-if="selectedChallenge.comments.length > 0" style="white-space: normal;">
+      <li class="item" ng-repeat="comment in selectedChallenge.comments" ng-if="selectedChallenge.comments.length > 0"
+          style="white-space: normal;">
         <strong>{{comment.user.nickname}}:</strong> {{comment.message}}
       </li>
     </div>

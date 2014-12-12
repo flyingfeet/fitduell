@@ -42,8 +42,9 @@ angular.module('challenger')
     loadSports();
   })
 
-  .controller('ChallengeDetailsCtrl', function ($scope, $state, $cordovaCamera, $cordovaToast, store, ChallengesService) {
+  .controller('ChallengeDetailsCtrl', function ($scope, $state, $cordovaCamera, $cordovaToast, store, ChallengesService, STATUS) {
     $scope.profile = store.get('fd_profile');
+    $scope.status = STATUS;
     var id = $state.params.id;
 
     $scope.createComment = function (comment) {
