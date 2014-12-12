@@ -38,19 +38,19 @@ angular.module('challenger')
     $scope.infoWindow = new google.maps.InfoWindow();
     $scope.service = new google.maps.places.PlacesService($scope.map);
 
-    $scope.service.nearbySearch(request,  $scope.callback);
+    $scope.service.nearbySearch(request, callback);
   }
 
-  $scope.callback = function (results, status) {
+  var callback = function (results, status) {
 
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < results.length; i++) {
-        $scope.createMarker(results[i]);
+        createMarker(results[i]);
       }
     }
   }
 
-  $scope.createMarker = function (place) {
+  var createMarker = function (place) {
     var image = 'img/gym.png';
 
     var marker = new google.maps.Marker({
@@ -61,17 +61,17 @@ angular.module('challenger')
 
     google.maps.event.addListener(marker, 'click', function() {
      $scope.service.getDetails(place, function(result, status) {
-        if (status != google.maps.places.PlacesServiceStatus.OK) {
-          alert(status);
-          return;
-        }
-        var infoContent = "<h4>"+result.name+"</h4>"+result.vicinity;
+      if (status != google.maps.places.PlacesServiceStatus.OK) {
+        alert(status);
+        return;
+      }
+      var infoContent = "<h4>"+result.name+"</h4>"+result.vicinity;
 
 
-        $scope.infoWindow.setContent(infoContent);
-        $scope.infoWindow.open($scope.map, marker);
-      });
+      $scope.infoWindow.setContent(infoContent);
+      $scope.infoWindow.open($scope.map, marker);
     });
+   });
   }
 
 
