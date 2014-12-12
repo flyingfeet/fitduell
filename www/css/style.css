@@ -18,10 +18,6 @@
   box-shadow: #2c3e50 1px 0 6px 1px;
 }
 
-.angular-google-map-container {
-  height: 500px;
-}
-
 #map-canvas{
   height: 500px;
 }
