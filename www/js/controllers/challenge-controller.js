@@ -51,9 +51,18 @@ angular.module('challenger')
       var promise = ChallengesService.createComment($scope.selectedChallenge.id, comment);
       promise.then(function (challenge) {
         $scope.selectedChallenge = challenge;
-        for (var i = 0; i < $scope.timelineChallenges.length; i++) {
-          if ($scope.timelineChallenges[i].id === $scope.selectedChallenge.id) {
-            $scope.timelineChallenges[i] = challenge;
+        if ($scope.timelineChallenges) {
+          for (var i = 0; i < $scope.timelineChallenges.length; i++) {
+            if ($scope.timelineChallenges[i].id === $scope.selectedChallenge.id) {
+              $scope.timelineChallenges[i] = challenge;
+            }
+          }
+        }
+        if ($scope.challenges) {
+          for (var i = 0; i < $scope.challenges.length; i++) {
+            if ($scope.challenges[i].id === $scope.selectedChallenge.id) {
+              $scope.challenges[i] = challenge;
+            }
           }
         }
       }, function (err) {
@@ -95,9 +104,18 @@ angular.module('challenger')
       var promise = ChallengesService.updateStatus(id, status, winner);
       promise.then(function (challenge) {
         $scope.selectedChallenge = challenge;
-        for (var i = 0; i < $scope.timelineChallenges.length; i++) {
-          if ($scope.timelineChallenges[i].id === $scope.selectedChallenge.id) {
-            $scope.timelineChallenges[i] = challenge;
+        if ($scope.timelineChallenges) {
+          for (var i = 0; i < $scope.timelineChallenges.length; i++) {
+            if ($scope.timelineChallenges[i].id === $scope.selectedChallenge.id) {
+              $scope.timelineChallenges[i] = challenge;
+            }
+          }
+        }
+        if ($scope.challenges) {
+          for (var i = 0; i < $scope.challenges.length; i++) {
+            if ($scope.challenges[i].id === $scope.selectedChallenge.id) {
+              $scope.challenges[i] = challenge;
+            }
           }
         }
       }, function (err) {
