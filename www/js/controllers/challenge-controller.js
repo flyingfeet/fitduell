@@ -40,7 +40,12 @@ angular.module('challenger')
         $cordovaToast.showShortBottom("Herausforderung gesendet.");
         $state.go('app.timeline.details', {id: challenge.id});
       }, function (err) {
-        console.log(err);
+        if (err.data.errorMessageCode === "error.overranking") {
+          $cordovaToast.showLongBottom("Der Rangunterschied ist zu groß!");
+        }
+        else {
+          $cordovaToast.showLongBottom(err);
+        }
       });
     };
 
@@ -53,7 +58,7 @@ angular.module('challenger')
     var id = $state.params.id;
 
     $scope.createComment = function (comment) {
-      if(comment === undefined || comment.message.length === 0) {
+      if (comment === undefined || comment.message.length === 0) {
         $cordovaToast.showLongBottom("Ein Kommentar wird benötigt!");
         return;
       }
@@ -81,35 +86,35 @@ angular.module('challenger')
       });
     };
 
-    //var cameraOptions = {
-    //  quality: 100,
-    //  destinationType: Camera.DestinationType.DATA_URL,
-    //  sourceType: Camera.PictureSourceType.CAMERA,
-    //  allowEdit: true,
-    //  encodingType: Camera.EncodingType.JPEG,
-    //  targetWidth: 300,
-    //  targetHeight: 300,
-    //  popoverOptions: CameraPopoverOptions,
-    //  saveToPhotoAlbum: false
-    //};
-    //
-    //$scope.getPicture = function () {
-    //  $cordovaCamera.getPicture(cameraOptions).then(function (imageData) {
-    //    var promise = ChallengesService.uploadProofImage(id, imageData);
-    //    promise.then(function (challenge) {
-    //      $scope.selectedChallenge = challenge;
-    //      for (var i = 0; i < $scope.timelineChallenges.length; i++) {
-    //        if ($scope.timelineChallenges[i].id === $scope.selectedChallenge.id) {
-    //          $scope.timelineChallenges[i] = challenge;
-    //        }
-    //      }
-    //
-    //      $cordovaToast.showShortBottom("Bild erfolgreich hochgeladen.");
-    //    })
-    //  }, function (err) {
-    //    $cordovaToast.showLongBottom(err);
-    //  });
-    //};
+    var cameraOptions = {
+      quality: 100,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+    };
+
+    $scope.getPicture = function () {
+      $cordovaCamera.getPicture(cameraOptions).then(function (imageData) {
+        var promise = ChallengesService.uploadProofImage(id, imageData);
+        promise.then(function (challenge) {
+          $scope.selectedChallenge = challenge;
+          for (var i = 0; i < $scope.timelineChallenges.length; i++) {
+            if ($scope.timelineChallenges[i].id === $scope.selectedChallenge.id) {
+              $scope.timelineChallenges[i] = challenge;
+            }
+          }
+
+          $cordovaToast.showShortBottom("Bild erfolgreich hochgeladen.");
+        })
+      }, function (err) {
+        $cordovaToast.showLongBottom(err);
+      });
+    };
 
     $scope.updateStatus = function (status, winner) {
       var promise = ChallengesService.updateStatus(id, status, winner);
