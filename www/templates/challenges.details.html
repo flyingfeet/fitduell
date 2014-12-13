@@ -11,6 +11,7 @@
           <div class="col"
                ng-click="loggedInUser.id !== selectedChallenge.requestingUser.id ? showProfile(selectedChallenge.requestingUser) : goToMyProfile()">
             <img src="{{selectedChallenge.requestingUser.avatar}}" width="50px"/>
+
             <p>{{selectedChallenge.requestingUser.nickname}}</p>
           </div>
           <div class="col" style="text-align: center;">
@@ -19,6 +20,7 @@
           <div class="col" style="text-align: right;"
                ng-click="loggedInUser.id !== selectedChallenge.requestedUser.id ? showProfile(selectedChallenge.requestedUser) : goToMyProfile()">
             <img src="{{selectedChallenge.requestedUser.avatar}}" width="50px"/>
+
             <p>{{selectedChallenge.requestedUser.nickname}}</p>
           </div>
         </div>
@@ -99,19 +101,20 @@
     <h3>Kommentare</h3>
 
     <div class="list">
-      <li class="item" style="padding: 5px;">
-        <div class="row">
-          <div class="col-75">
-            <label class="item item-input">
-              <input type="text" placeholder="Schreibe einen Kommentar" ng-model="comment.message">
-            </label>
+      <form name="createCommentForm">
+        <li class="item" style="padding: 5px;">
+          <div class="row">
+            <div class="col-75">
+              <label class="item item-input">
+                <input type="text" placeholder="Schreibe einen Kommentar" ng-model="comment.message">
+              </label>
+            </div>
+            <div class="col-25" style="text-align: right;font-size: 35px;line-height: 45px;">
+              <i class="icon ion-paper-airplane" ng-click="createComment(comment)"></i>
+            </div>
           </div>
-          <div class="col-25" style="text-align: right;font-size: 35px;line-height: 45px;">
-            <i class="icon ion-paper-airplane" ng-click="createComment(comment)"></i>
-          </div>
-        </div>
-
-      </li>
+        </li>
+      </form>
       <li class="item" ng-repeat="comment in selectedChallenge.comments" ng-if="selectedChallenge.comments.length > 0"
           style="white-space: normal;">
         <strong>{{comment.user.nickname}}:</strong> {{comment.message}}

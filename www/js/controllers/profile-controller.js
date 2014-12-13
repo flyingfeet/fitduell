@@ -1,6 +1,6 @@
 angular.module('challenger')
 
-  .controller('MyProfileCtrl', function ($scope, $state, store, UserService) {
+  .controller('MyProfileCtrl', function ($scope, $state, $cordovaToast, store, UserService) {
     var profile = {};
     if (store.get('fd_profile')) {
       profile = store.get('fd_profile');
@@ -49,20 +49,24 @@ angular.module('challenger')
       $scope.profile.birthdate = y + "-" + (m < 10 ? "0" + m : m) + "-" + d;
     }
 
-    //Show profile picture sometimes
+    var today = new Date();
+    var year = today.getFullYear() - 10;
+    $scope.min = new Date(year, today.getMonth(), today.getDate());
 
     $scope.saveProfile = function (profile) {
       var promise = UserService.updateProfile(profile);
       promise.then(function (profile) {
         if (store.get('fd_profile')) {
           store.set('fd_profile', profile);
+          $cordovaToast.showShortBottom("Profil aktualisiert");
         }
         else {
           store.set('fd_profile', profile);
+          $cordovaToast.showShortBottom("Profil erstellt");
           $state.go('app.timeline.list');
         }
       }, function (err) {
-        console.log(err);
+        $cordovaToast.showLongBottom(err);
       });
     };
   });

@@ -5,44 +5,46 @@
   <ion-content class="has-header main">
     <h2>Neue Challenge</h2>
 
-    <div class="list">
+    <form name="newChallengeForm" novalidate>
+      <div class="list">
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Herausforderer</span>
-        <input type="text" ng-model="challenge.requestingUser.nickname" ng-disabled="true">
-      </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Herausforderer</span>
+          <input type="text" ng-model="challenge.requestingUser.nickname" ng-disabled="true">
+        </label>
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Geforderter</span>
-        <input type="text" ng-model="challenge.requestedUser.nickname" ng-disabled="true">
-      </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Geforderter</span>
+          <input type="text" ng-model="challenge.requestedUser.nickname" ng-disabled="true">
+        </label>
 
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Sportart:
-        </div>
-        <select ng-model="challenge.sport" ng-change="changeExercises()" ng-options="s.name for s in sports">
-        </select>
-      </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Sportart:
+          </div>
+          <select ng-model="challenge.sport" ng-change="changeExercises()" ng-options="s.name for s in sports">
+          </select>
+        </label>
 
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Übung:
-        </div>
-        <select ng-model="challenge.exercise" ng-options="e.name for e in exercises"></select>
-      </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Übung:
+          </div>
+          <select ng-model="challenge.exercise" ng-options="e.name for e in exercises"></select>
+        </label>
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Wert</span>
-        <input type="number" placeholder="0" ng-model="challenge.exerciseValue">
-      </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Wert</span>
+          <input type="number" placeholder="0" ng-model="challenge.exerciseValue" ng-required="true">
+        </label>
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Ablaufdatum</span>
-        <input type="date" ng-model="challenge.expireDate">
-      </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Ablaufdatum</span>
+          <input type="date" ng-model="challenge.expireDate" ng-required="true" min="{{min | date: 'yyyy-MM-dd'}}">
+        </label>
 
-      <button class="button button-full button-positive" ng-click="createChallenge()">Herausfordern</button>
-    </div>
+        <button class="button button-full button-positive" ng-click="createChallenge()" ng-disabled="newChallengeForm.$invalid">Herausfordern</button>
+      </div>
+    </form>
   </ion-content>
 </ion-view>
