@@ -31,7 +31,7 @@
           <div class="col-67">
             <h4>Kategorie: {{selectedChallenge.sport.name}}</h4>
             <h4>Aufgabe: {{selectedChallenge.exercise.name}}</h4>
-            <h4 ng-show="selectedCallenge.exercise.description != null">Übungsbeschreibung: {{selectedChallenge.exercise.description}}</h4>
+            <h4 ng-show="selectedChallenge.exercise.description">Übungsbeschreibung: {{selectedChallenge.exercise.description}}</h4>
             <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
             <h4>Ablaufdatum: {{selectedChallenge.expireDate | date:'dd.MM.yyyy - HH:mm'}} Uhr</h4>
           </div>
