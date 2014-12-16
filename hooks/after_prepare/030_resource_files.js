@@ -17,19 +17,22 @@
 
 var filestocopy = [{
   "config/android/res/drawable/icon.png":
-    "platforms/android/ant-build/res/drawable/icon.png"
+  "platforms/android/ant-build/res/drawable/icon.png"
 }, {
   "config/android/res/drawable/icon.png":
-    "platforms/android/ant-build/res/drawable-hdpi/icon.png"
+  "platforms/android/ant-build/res/drawable-hdpi/icon.png"
 }, {
   "config/android/res/drawable/icon.png":
-    "platforms/android/ant-build/res/drawable-ldpi/icon.png"
+  "platforms/android/ant-build/res/drawable-ldpi/icon.png"
 }, {
   "config/android/res/drawable/icon.png":
-    "platforms/android/ant-build/res/drawable-mdpi/icon.png"
+  "platforms/android/ant-build/res/drawable-mdpi/icon.png"
 }, {
   "config/android/res/drawable/icon.png":
-    "platforms/android/ant-build/res/drawable-xhdpi/icon.png"
+  "platforms/android/ant-build/res/drawable-xhdpi/icon.png"
+}, {
+  "config/ios/Resources/icons/icon.png":
+  "platforms/ios/Challenger/Resources/icons/icon-72.png"
 } ];
 
 var fs = require('fs');
