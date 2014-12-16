@@ -13,14 +13,17 @@
 }
 
 .ion-clock, .ion-help-circled, .ion-gear-b {
+  opacity: 0.5;
   color: #FFA500;
 }
 
 .ion-minus-circled {
+  opacity: 0.5;
   color: #FF0000;
 }
 
 .ion-checkmark-circled {
+  opacity: 0.5;
   color: #3B5998;
 }
 
