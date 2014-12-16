@@ -13,6 +13,7 @@
   <author email="fech1014@hs-karlsruhe.de">
     Christian Feurer
   </author>
+  <icon src="www\img\Challenger.jpg" width="72" height="72" />
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
