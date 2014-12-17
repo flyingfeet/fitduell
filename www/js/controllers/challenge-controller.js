@@ -7,10 +7,12 @@ angular.module('challenger')
   $scope.challenge.likes = 0;
   $scope.challenge.comments = [];
 
+
   var today = new Date();
   var day = today.getDate() + 7;
   $scope.min = new Date(today.getFullYear(), today.getMonth(), day);
   console.log($scope.min);
+  $scope.challenge.createDate = today;
 
   var loadSports = function () {
     var sportsPromise = ChallengesService.findSports();

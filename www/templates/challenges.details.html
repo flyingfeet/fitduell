@@ -33,32 +33,32 @@
       <h4>Aufgabe: {{selectedChallenge.exercise.name}}</h4>
       <div ng-show="selectedChallenge.exercise.description">
         <a class="subdued" ng-click="openModal()">Zur Übungsbeschreibung</button>
+        </div>
+        <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
+        <h4>Ablaufdatum: {{selectedChallenge.expireDate | date:'dd.MM.yyyy - HH:mm'}} Uhr</h4>
       </div>
-      <h4>Wert: {{selectedChallenge.exerciseValue}}</h4>
-      <h4>Ablaufdatum: {{selectedChallenge.expireDate | date:'dd.MM.yyyy - HH:mm'}} Uhr</h4>
+
+      <div class="col-33">
+        <i class="icon {{status[selectedChallenge.status]}} custom-icon" style="font-size: 100px"></i>
+      </div>
     </div>
 
-    <div class="col-33">
-      <i class="icon {{status[selectedChallenge.status]}} custom-icon" style="font-size: 100px"></i>
-    </div>
-  </div>
-
-  <div class="row" ng-if="selectedChallenge.proofImageAsString">
-    <div class="col" style="padding: 0px;">
-      <h3><strong>Beweisfoto:</strong></h3>
-      <img src="data:image/jpeg;base64,{{selectedChallenge.proofImageAsString}}" width="100%"/>
+    <div class="row" ng-if="selectedChallenge.proofImageAsString">
+      <div class="col" style="padding: 0px;">
+        <h3><strong>Beweisfoto:</strong></h3>
+        <img src="data:image/jpeg;base64,{{selectedChallenge.proofImageAsString}}" width="100%"/>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="item tabs tabs-secondary tabs-icon-left"
-ng-if="selectedChallenge.status != 'DENIED' || selectedChallenge.status != 'TOBEPROOFED'">
-<!-- Aktzeptieren oder Ablehnen -->
-<a class="tab-item" href=""
-ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname"
-ng-click="updateStatus('ACCEPTED', 'NONE')">
-<i class="icon ion-checkmark-round"></i>
-Aktzeptieren
+  <div class="item tabs tabs-secondary tabs-icon-left"
+  ng-if="selectedChallenge.status != 'DENIED' || selectedChallenge.status != 'TOBEPROOFED'">
+  <!-- Aktzeptieren oder Ablehnen -->
+  <a class="tab-item" href=""
+  ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname"
+  ng-click="updateStatus('ACCEPTED', 'NONE')">
+  <i class="icon ion-checkmark-round"></i>
+  Aktzeptieren
 </a>
 <a class="tab-item" href=""
 ng-if="selectedChallenge.status === 'WAITING' && selectedChallenge.requestedUser.nickname === profile.nickname"
@@ -130,8 +130,14 @@ Ablehnen
     <h1 class="title">Übungsbeschreibung</h1>
   </ion-header-bar>
   <ion-content>
-   <div ng-bind-html="selectedChallenge.exercise.description"></div>
-
+  <div class="row">
+    <div class="col-75">
+      <div ng-bind-html="selectedChallenge.exercise.description"></div>
+    </div>
+    <div class="col-25">
+    <img src="{{selectedChallenge.exercise.image}}" height="40%" width="100%"/>
+    </div>
+  </div>
   <button class="button button-full button-positive" ng-click="closeModal()">Done</button>
 </ion-content>
 </div>
