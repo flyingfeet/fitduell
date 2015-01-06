@@ -1,12 +1,27 @@
 angular.module('challenger')
 
   .service('ChallengesService', function ($q, Restangular) {
+    function determineSportValue(challenges) {
+      angular.forEach(challenges, function (challenge) {
+        switch (challenge.sport.name) {
+          case 'Ausdauer':
+            challenge.sportValue = "km";
+            break;
+          case 'Kraftsport':
+            challenge.sportValue = "kg";
+            break;
+        }
+      });
+
+      return challenges;
+    }
+
     return {
       findMyChallenges: function (userId) {
         var deferred = $q.defer();
 
         Restangular.all('challenges').one('user', userId).getList().then(function (challenges) {
-          deferred.resolve(challenges);
+          deferred.resolve(determineSportValue(challenges));
         }, function (err) {
           deferred.reject(err);
         });
@@ -17,7 +32,7 @@ angular.module('challenger')
         var deferred = $q.defer();
 
         Restangular.all('challenges').one('user', userId).getList('timeline').then(function (challenges) {
-          deferred.resolve(challenges);
+          deferred.resolve(determineSportValue(challenges));
         }, function (err) {
           deferred.reject(err);
         });

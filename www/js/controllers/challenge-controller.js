@@ -6,12 +6,11 @@ angular.module('challenger')
     $scope.challenge.requestingUser = store.get('fd_profile');
     $scope.challenge.likes = 0;
     $scope.challenge.comments = [];
-
+    $scope.challengeValue = "";
 
     var today = new Date();
     var day = today.getDate() + 7;
     $scope.min = new Date(today.getFullYear(), today.getMonth(), day);
-    console.log($scope.min);
     $scope.challenge.createDate = today;
 
     var loadSports = function () {
@@ -25,6 +24,19 @@ angular.module('challenger')
         console.log(err);
       });
     };
+
+    $scope.$watch('challenge.sport', function (newValue) {
+      if (newValue) {
+        switch (newValue.name) {
+          case 'Ausdauer':
+            $scope.challengeValue = "km";
+            break;
+          case 'Kraftsport':
+            $scope.challengeValue = "kg";
+            break;
+        }
+      }
+    });
 
     $scope.changeExercises = function () {
       _.find($scope.sports, function (sport) {
@@ -202,3 +214,4 @@ angular.module('challenger')
 
     $scope.findMyChallenges();
   });
+
