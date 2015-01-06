@@ -11,13 +11,16 @@
           <div class="col"
                ng-click="loggedInUser.id !== challenge.requestingUser.id ? showProfile(challenge.requestingUser) : goToMyProfile()">
             <img src="{{challenge.requestingUser.avatar}}" width="50px"/>
+
             <p>{{challenge.requestingUser.nickname}}</p>
           </div>
           <div class="col" style="text-align: center;">
             <h3><strong>versus</strong></h3>
           </div>
-          <div class="col" style="text-align: right;" ng-click="loggedInUser.id !== challenge.requestedUser.id ? showProfile(challenge.requestedUser) : goToMyProfile()">
+          <div class="col" style="text-align: right;"
+               ng-click="loggedInUser.id !== challenge.requestedUser.id ? showProfile(challenge.requestedUser) : goToMyProfile()">
             <img src="{{challenge.requestedUser.avatar}}" width="50px"/>
+
             <p>{{challenge.requestedUser.nickname}}</p>
           </div>
         </div>
@@ -51,10 +54,6 @@
           <i class="icon ion-chatbox"></i>
           Kommentieren
         </a>
-        <!--<a class="tab-item" href="#">-->
-        <!--<i class="icon ion-share"></i>-->
-        <!--Share-->
-        <!--</a>-->
       </div>
     </div>
 
