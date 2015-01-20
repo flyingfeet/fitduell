@@ -48,6 +48,16 @@ angular.module('challenger')
       var y = birthdate.getFullYear();
       $scope.profile.birthdate = y + "-" + (m < 10 ? "0" + m : m) + "-" + d;
     }
+    if(profile.rang) {
+      var promise = UserService.findUserById(profile.id);
+      promise.then(function (user) {
+        $scope.rang = user.rang;
+        $scope.points = user.points;
+      }, function (err) {
+        console.log(err);
+      });
+    }
+    console.log(profile);
 
     var today = new Date();
     var year = today.getFullYear() - 10;

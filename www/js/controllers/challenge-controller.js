@@ -185,6 +185,7 @@ angular.module('challenger')
 
   .controller('ChallengesCtrl', function ($rootScope, $scope, $state, $cordovaToast, store, ChallengesService, STATUS) {
     $scope.status = STATUS;
+    $scope.loggedInUser = store.get('fd_profile');
     $scope.loaded = false;
 
     $scope.findMyChallenges = function () {
