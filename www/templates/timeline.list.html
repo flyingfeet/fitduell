@@ -5,13 +5,13 @@
   <ion-content class="has-header main">
 
     <div class="list" ng-if="timelineChallenges.length == 0 && loaded">
-      <div class="item">
+      <div class="item item-text-wrap">
         <h2>Fordere einen Freund heraus um hier Challenges zu sehen!</h2>
       </div>
     </div>
 
     <div class="list" ng-if="!timelineChallenges">
-      <div class="item">
+      <div class="item item-text-wrap">
         <h2>Challenges werden geladen...Gedulde dich einen kleinen Moment.</h2>
       </div>
     </div>
@@ -22,7 +22,7 @@
         <div class="row">
           <div class="col"
                ng-click="loggedInUser.id !== challenge.requestingUser.id ? showProfile(challenge.requestingUser) : goToMyProfile()">
-            <img src="{{challenge.requestingUser.avatar}}" width="50px"/>
+            <img ng-src="{{challenge.requestingUser.avatar}}" width="50px"/>
 
             <p>{{challenge.requestingUser.nickname}}</p>
           </div>
@@ -31,7 +31,7 @@
           </div>
           <div class="col" style="text-align: right;"
                ng-click="loggedInUser.id !== challenge.requestedUser.id ? showProfile(challenge.requestedUser) : goToMyProfile()">
-            <img src="{{challenge.requestedUser.avatar}}" width="50px"/>
+            <img ng-src="{{challenge.requestedUser.avatar}}" width="50px"/>
 
             <p>{{challenge.requestedUser.nickname}}</p>
           </div>

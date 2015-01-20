@@ -28,7 +28,7 @@
       <div class="list card">
         <div class="item item-avatar" ng-repeat="friend in friends | FriendlistStatusFilter:'ACCEPTED'"
              ng-click="showProfile(friend.friend)">
-          <img src="{{friend.friend.avatar}}" />
+          <img ng-src="{{friend.friend.avatar}}" />
           <h2>{{friend.friend.nickname}}</h2>
 
           <p>{{friend.friend.birthdate | date: 'dd.MM.yyyy'}}</p>

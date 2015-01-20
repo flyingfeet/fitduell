@@ -25,7 +25,7 @@
       <div class="list card">
 
         <div class="item item-avatar" ng-repeat="user in users | SearchResultFilter" ng-click="showProfile(user)">
-          <img src="{{user.avatar}}" />
+          <img ng-src="{{user.avatar}}" />
           <h2>{{user.firstname}} {{user.lastname}} ({{user.nickname}})</h2>
 
           <p>{{user.birthdate | date: 'dd.MM.yyyy'}}</p>

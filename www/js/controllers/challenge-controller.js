@@ -185,7 +185,6 @@ angular.module('challenger')
 
   .controller('ChallengesCtrl', function ($rootScope, $scope, $state, $cordovaToast, store, ChallengesService, STATUS) {
     $scope.status = STATUS;
-    $scope.loaded = false;
 
     $scope.findMyChallenges = function () {
       var userId = store.get('fd_profile').id;
@@ -193,7 +192,6 @@ angular.module('challenger')
       var promise = ChallengesService.findMyChallenges(userId);
       promise.then(function (challenges) {
         $scope.challenges = challenges;
-        $scope.loaded = true;
       }, function (err) {
         console.log(err);
       });
