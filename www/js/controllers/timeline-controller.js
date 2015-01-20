@@ -3,6 +3,7 @@ angular.module('challenger')
   .controller('TimelineCtrl', function ($rootScope, $scope, $state, $cordovaToast, store, ChallengesService, STATUS) {
     $scope.status = STATUS;
     $scope.loggedInUser = store.get('fd_profile');
+    $scope.loaded = false;
 
     $scope.findMyAndMyFriendsChallenges = function () {
       var userId = store.get('fd_profile').id;
@@ -10,6 +11,7 @@ angular.module('challenger')
       var promise = ChallengesService.findMyAndMyFriendsChallenges(userId);
       promise.then(function (challenges) {
         $scope.timelineChallenges = challenges;
+        $scope.loaded = true;
       }, function (err) {
         console.log(err);
       });

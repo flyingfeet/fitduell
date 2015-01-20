@@ -4,6 +4,18 @@
   </ion-nav-buttons>
   <ion-content class="has-header main">
 
+    <div class="list" ng-if="timelineChallenges.length == 0 && loaded">
+      <div class="item">
+        <h2>Fordere einen Freund heraus um hier Challenges zu sehen!</h2>
+      </div>
+    </div>
+
+    <div class="list" ng-if="!timelineChallenges">
+      <div class="item">
+        <h2>Challenges werden geladen...Gedulde dich einen kleinen Moment.</h2>
+      </div>
+    </div>
+
     <div class="list" ng-repeat="challenge in timelineChallenges">
       <div class="item" style="padding: 0px;" ng-click="showDetails(challenge)">
         <!--<img src="mcfly.jpg">-->
