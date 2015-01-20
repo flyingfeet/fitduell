@@ -1,6 +1,6 @@
 angular.module('challenger')
 
-  .controller('AppCtrl', function ($scope, $state, AuthService) {
+  .controller('AppCtrl', function ($scope, $state, $cordovaToast, AuthService, AUTH_EVENTS) {
     $scope.login = function () {
       AuthService.login();
     };
@@ -31,9 +31,14 @@ angular.module('challenger')
     $scope.showChallengeDetails = function (challenge) {
       $scope.selectedChallenge = challenge;
       $state.go('app.challengeDetails', {id: challenge.id});
-    }
+    };
 
     if (!$scope.isLoggedIn()) {
       $scope.login();
     }
+
+    $scope.$on(AUTH_EVENTS.noServer, function (event, response) {
+      console.log("Server not reachable");
+      $cordovaToast.showLongBottom("Der Server ist zur Zeit nicht erreichbar. Versuche es zu einem späteren Zeitpunkt erneut.");
+    });
   });

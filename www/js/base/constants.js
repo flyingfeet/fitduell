@@ -7,3 +7,7 @@ angular.module('challenger')
     "TOBEPROOFED": "ion-gear-b",
     "PASSED": "ion-checkmark-circled"
   })
+
+.constant("AUTH_EVENTS", {
+    noServer: 'server-not-reachable'
+  });
